@@ -1,55 +1,38 @@
 package com.example.finalproject.application;
 
 
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.finalproject.R;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 
 public class SearchActivity extends AppCompatActivity {
 
-    @BindView(R.id.courseNumber)
-    TextView courseNumber;
+    @BindView(R.id.term)
+    Spinner term;
 
-    @BindView(R.id.title)
-    TextView title;
+    @BindView(R.id.subject)
+    Spinner subject;
 
-    @BindView(R.id.creditHours)
-    TextView creditHours;
+    @BindView(R.id.spinnerCourse)
+    Spinner spinnerCourse;
 
-    @BindView(R.id.description)
-    TextView description;
+    @BindView(R.id.searchCourse)
+    Button searchCourse;
 
-    @BindView(R.id.crn)
-    TextView crn;
+    @BindView(R.id.clearForm)
+    Button clearForm;
 
-    @BindView(R.id.instructor)
-    TextView instructor;
-
-    @BindView(R.id.section)
-    TextView section;
-
-    @BindView(R.id.grade)
-    TextView grade;
-
-    @BindView(R.id.day)
-    TextView day;
-
-    @BindView(R.id.difficulty)
-    TextView difficulty;
-
-    @BindView(R.id.time)
-    TextView time;
-
-    @BindView(R.id.location)
-    TextView location;
-
+    @BindView(R.id.home)
+    Button home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,5 +40,45 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.search_page);
         ButterKnife.bind(this);
     }
+
+    @OnClick(R.id.searchCourse)
+    public void searchCourse() {
+        if (term.getSelectedItem().toString().length() == 0) {
+            Toast.makeText(this, "Please select a term",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (subject.getSelectedItem().toString().length() == 0) {
+            Toast.makeText(this, "Please select a subject",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (spinnerCourse.getSelectedItem().toString().length() == 0) {
+            Toast.makeText(this, "Please select a course",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Intent intent = new Intent(SearchActivity.this, CourseResultActivity.class);
+        Bundle parameter = new Bundle();
+        parameter.putString("courseNumber", spinnerCourse.getSelectedItem().toString());
+        intent.putExtras(parameter);
+        startActivity(intent);
+        finish();
+    }
+
+    @OnClick(R.id.clearForm)
+    public void clearForm() {
+        term.setSelection(0);
+        subject.setSelection(0);
+        spinnerCourse.setSelection(0);
+    }
+
+
+    @OnClick(R.id.home)
+    public void goBackToHomePage() {
+        startActivity(new Intent(SearchActivity.this, MainMenuActivity.class));
+    }
+
+
+
+
 
 }
