@@ -3,6 +3,7 @@ package com.example.finalproject.model;
 import java.time.LocalTime;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Course {
@@ -38,6 +40,8 @@ public class Course {
 
     public static final String KEY_location = "location";
 
+    public static final String KEY_prerequisites = "prerequisites";
+
 
     private String courseNumber;
 
@@ -53,9 +57,9 @@ public class Course {
 
     private String day;
 
-    private LocalTime startTime;
+    private String startTime;
 
-    private LocalTime endTime;
+    private String endTime;
 
     private String instructor;
 

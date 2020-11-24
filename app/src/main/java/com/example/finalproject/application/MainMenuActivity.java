@@ -3,11 +3,8 @@ package com.example.finalproject.application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.finalproject.R;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -15,7 +12,7 @@ import butterknife.OnClick;
 public class MainMenuActivity extends AppCompatActivity {
 
     @BindView(R.id.classSearch)
-    TextView textView;
+    TextView classSearch;
 
     @BindView(R.id.myCart)
     TextView myCart;
@@ -29,7 +26,6 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu_page);
         ButterKnife.bind(this);
-
     }
 
 

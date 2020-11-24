@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.finalproject.R;
 import com.example.finalproject.model.User;
 import com.example.finalproject.service.UserDomainService;
-import com.example.finalproject.utils.Utils;
+import com.example.finalproject.utils.TextUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,11 +42,11 @@ public class RegisterActivity extends AppCompatActivity {
     public void createAccount() {
         String username = registerUsername.getText().toString();
         String password = registerPassword.getText().toString();
-        if (!Utils.validateUsernameLength(username)) {
+        if (!TextUtil.validateUsernameLength(username)) {
             Toast.makeText(this, "The length of username is invalid", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (!Utils.isAlphaNumeric(username)) {
+        if (!TextUtil.isAlphaNumeric(username)) {
             Toast.makeText(this, "The username should only contain digits and letters",
                     Toast.LENGTH_SHORT).show();
             return;
@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "this username was registered", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (!Utils.validatePasswordLength(password)) {
+        if (!TextUtil.validatePasswordLength(password)) {
             Toast.makeText(this, "The length of password is invalid",Toast.LENGTH_SHORT).show();
             return;
         }

@@ -4,7 +4,7 @@ package com.example.finalproject.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Utils {
+public class TextUtil {
 
     private static Integer USERNAME_LENGTH = 6;
 

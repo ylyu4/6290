@@ -19,8 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".application.RegisterActivity"/>
-        <activity android:name=".application.MainMenuActivity"/>
         <activity android:name=".application.SearchActivity"/>
+        <activity android:name=".application.CourseResultActivity"/>
+        <activity android:name=".application.MainMenuActivity" />
 
     </application>
 
