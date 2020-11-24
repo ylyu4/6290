@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">FinalProject</string>
+    <string-array name="spinner_term">
+        <item></item>
+        <item>Spring 2021</item>
+    </string-array>
+
+    <string-array name="spinner_subject">
+        <item></item>
+        <item>Information Systems Technology</item>
+    </string-array>
+
+    <string-array name="spinner_course">
+        <item></item>
+        <item>3119</item>
+        <item>4121</item>
+        <item>6200</item>
+        <item>6201</item>
+        <item>6202</item>
+        <item>6204</item>
+        <item>6205</item>
+        <item>6206</item>
+        <item>6209</item>
+        <item>6210</item>
+        <item>6217</item>
+        <item>6218</item>
+        <item>6222</item>
+        <item>6223</item>
+        <item>6225</item>
+        <item>6233</item>
+    </string-array>
+</resources>

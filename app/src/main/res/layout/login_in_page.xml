@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/gw_logo"
+        android:layout_marginLeft="150dp"/>
+
+    <TextView
+        android:id="@+id/topic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Class Registration Helper"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textSize="20dp"
+        android:textColor="#4682B4"
+        android:textStyle="bold"/>
+
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WELCOME"
+        android:textSize="50dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:textColor="#4682B4"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/loginUsernameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="20dp"
+        android:textColor="#4682B4"/>
+
+    <EditText
+        android:id="@+id/loginUsername"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:padding="12dp"
+        android:layout_marginTop="10dp"
+        android:background="#BBDEFB"
+        android:maxLength="6"
+        android:digits="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"/>
+
+    <TextView
+        android:id="@+id/loginPasswordText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="20dp"
+        android:textColor="#4682B4"/>
+
+    <EditText
+        android:id="@+id/loginPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:padding="12dp"
+        android:layout_marginTop="10dp"
+        android:background="#BBDEFB"
+        android:maxLength="20"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:background="#bfbfbf"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/qa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Don't have an account?"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textColor="#4682B4"/>
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"/>
+
+
+
+
+</LinearLayout>

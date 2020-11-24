@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#4682B4"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/registerUsernameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="20dp"
+        android:textColor="#4682B4"/>
+
+    <EditText
+        android:id="@+id/registerUsername"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:padding="12dp"
+        android:layout_marginTop="10dp"
+        android:background="#BBDEFB"
+        android:maxLength="6"
+        android:digits="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"/>
+
+    <TextView
+        android:id="@+id/restriction1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="*Username must be 6 characters long."
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/restriction2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="*Username can only contain digit and letter."
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/registerPasswordText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="20dp"
+        android:textColor="#4682B4"/>
+
+    <EditText
+        android:id="@+id/registerPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:padding="12dp"
+        android:layout_marginTop="10dp"
+        android:background="#BBDEFB"
+        android:maxLength="20"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/restriction3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="*Password must be 10-20 characters long."
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/createAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:background="#bfbfbf"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/qa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Have an account?"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textColor="#4682B4"/>
+
+    <Button
+        android:id="@+id/signIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"/>
+
+
+
+</LinearLayout>
