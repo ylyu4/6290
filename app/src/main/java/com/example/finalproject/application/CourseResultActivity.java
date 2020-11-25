@@ -2,11 +2,14 @@ package com.example.finalproject.application;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.finalproject.R;
 import com.example.finalproject.model.Course;
 import com.example.finalproject.model.Instructor;
+import com.example.finalproject.service.CartDomainService;
 import com.example.finalproject.service.CourseDomainService;
 import com.example.finalproject.service.InstructorDomainService;
 import com.example.finalproject.utils.HtmlParseUtil;
@@ -14,6 +17,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import lombok.SneakyThrows;
 
 public class CourseResultActivity extends AppCompatActivity {
@@ -21,6 +25,8 @@ public class CourseResultActivity extends AppCompatActivity {
     private final CourseDomainService courseDomainService = new CourseDomainService(this);
 
     private final InstructorDomainService instructorDomainService = new InstructorDomainService(this);
+
+    private final CartDomainService cartDomainService = new CartDomainService(this);
 
     private static final String KEY = "courseNumber";
 
@@ -60,12 +66,20 @@ public class CourseResultActivity extends AppCompatActivity {
     @BindView(R.id.location)
     TextView location;
 
+    @BindView(R.id.addCourseToCart)
+    Button addCourseToCart;
 
+    @BindView(R.id.backToSearchPage)
+    Button backToSearchPage;
 
     @SneakyThrows
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         setContentView(R.layout.course_result_page);
         ButterKnife.bind(this);
         Bundle parameter = getIntent().getExtras();
@@ -98,9 +112,15 @@ public class CourseResultActivity extends AppCompatActivity {
                 difficulty.setText(HtmlParseUtil.getProfessorDifficulty(rateMyProfessorId));
             }
         }
-
-
     }
 
+    @OnClick(R.id.addCourseToCart)
+    public void addCourse() {
+        cartDomainService.addCourseInCart(MainMenuActivity.USERNAME, courseNumber.getText().toString());
+    }
 
+    @OnClick(R.id.backToSearchPage)
+    public void backToSearchPage() {
+        startActivity(new Intent(CourseResultActivity.this, MainMenuActivity.class));
+    }
 }

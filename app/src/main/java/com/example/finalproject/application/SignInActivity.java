@@ -17,6 +17,8 @@ import butterknife.OnClick;
 
 public class SignInActivity extends AppCompatActivity {
 
+    private static final String USERNAME_KEY = "usernameKey";
+
     private final UserDomainService userDomainService = new UserDomainService(this);
 
     @BindView(R.id.loginUsername)
@@ -44,7 +46,12 @@ public class SignInActivity extends AppCompatActivity {
         boolean successful = userDomainService.login(loginUsername.getText().toString(),
                 loginPassword.getText().toString());
         if (successful) {
-            startActivity(new Intent(SignInActivity.this, MainMenuActivity.class));
+            Intent intent = new Intent(SignInActivity.this, MainMenuActivity.class);
+            Bundle parameter = new Bundle();
+            parameter.putString(USERNAME_KEY, loginUsername.getText().toString());
+            intent.putExtras(parameter);
+            startActivity(intent);
+            finish();
         } else {
             if (userDomainService.validateUsernameExist(loginUsername.getText().toString())) {
                 Toast.makeText(this, "Your password is incorrect", Toast.LENGTH_SHORT).show();

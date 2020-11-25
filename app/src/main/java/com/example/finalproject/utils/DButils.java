@@ -4,8 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.finalproject.model.Cart;
 import com.example.finalproject.model.Course;
 import com.example.finalproject.model.Instructor;
+import com.example.finalproject.model.Schedule;
 import com.example.finalproject.model.User;
 
 public class DButils extends SQLiteOpenHelper {
@@ -44,11 +46,19 @@ public class DButils extends SQLiteOpenHelper {
                 + Instructor.KEY_email + " TEXT ,"
                 + Instructor.KEY_office + " TEXT ,"
                 + Instructor.KEY_rateMyProfessorId + " TEXT )";
+        String CREATE_TABLE_CART = "CREATE TABLE " + Cart.TABLE + "("
+                + Cart.KEY_username + " TEXT ,"
+                + Cart.KEY_courseInCart + " TEXT )";
+        String CREATE_TABLE_SCHEDULE = "CREATE TABLE " + Schedule.TABLE + "("
+                + Schedule.KEY_username + " TEXT ,"
+                + Schedule.KEY_selectedCourse + " TEXT )";
         db.execSQL(CREATE_TABLE_USER);
         db.execSQL(CREATE_TABLE_COURSE);
         db.execSQL(importCourseInfo());
         db.execSQL(CREATE_TABLE_INSTRUCTOR);
         db.execSQL(importInstructorInfo());
+        db.execSQL(CREATE_TABLE_CART);
+        db.execSQL(CREATE_TABLE_SCHEDULE);
     }
 
     @Override
@@ -57,13 +67,14 @@ public class DButils extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+ User.TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+ Course.TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+ Instructor.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS "+ Cart.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS "+ Schedule.TABLE);
 
         //再次创建表
         onCreate(db);
     }
 
     private String importCourseInfo() {
-
         return "Insert into " + Course.TABLE + " (" + Course.KEY_courseNumber + "," + Course.KEY_title + ","
                 + Course.KEY_creditHours + "," + Course.KEY_description + "," + Course.KEY_crn + "," + Course.KEY_section + ","
                 + Course.KEY_day + "," + Course.KEY_startTime + "," + Course.KEY_endTime + "," + Course.KEY_instructor + "," + Course.KEY_location + "," + Course.KEY_prerequisites + ") values " +

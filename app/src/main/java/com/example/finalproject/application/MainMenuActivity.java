@@ -5,11 +5,18 @@ import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.finalproject.R;
+
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainMenuActivity extends AppCompatActivity {
+
+    private static final String USERNAME_KEY = "usernameKey";
+
+    public static String USERNAME = null;
 
     @BindView(R.id.classSearch)
     TextView classSearch;
@@ -26,12 +33,22 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu_page);
         ButterKnife.bind(this);
+        Bundle parameter = getIntent().getExtras();
+        if (parameter != null) {
+            USERNAME = Objects.requireNonNull(parameter.get(USERNAME_KEY)).toString();
+        }
     }
+
 
 
     @OnClick(R.id.classSearch)
     public void goToClassSearchPage() {
-        startActivity(new Intent(MainMenuActivity.this, SearchActivity.class));
+        Intent intent = new Intent(MainMenuActivity.this, SearchActivity.class);
+        Bundle parameter = new Bundle();
+        parameter.putString(USERNAME_KEY, USERNAME);
+        intent.putExtras(parameter);
+        startActivity(intent);
+        finish();
     }
 
 }
