@@ -18,7 +18,7 @@ public class CourseRepository {
     }
 
     public Course getCourseByCourseNumber(String courseNumber) {
-        SQLiteDatabase db = dButils.getWritableDatabase();
+        SQLiteDatabase db = dButils.getReadableDatabase();
         String selectQuery = "SELECT *"+
                 " FROM " + Course.TABLE
                 + " WHERE " +

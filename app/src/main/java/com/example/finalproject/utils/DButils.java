@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.finalproject.model.Course;
+import com.example.finalproject.model.Instructor;
 import com.example.finalproject.model.User;
 
 public class DButils extends SQLiteOpenHelper {
@@ -37,9 +38,17 @@ public class DButils extends SQLiteOpenHelper {
                 + Course.KEY_instructor + " TEXT ,"
                 + Course.KEY_location + " TEXT ,"
                 + Course.KEY_prerequisites + " TEXT )";
+        String CREATE_TABLE_INSTRUCTOR = "CREATE TABLE " + Instructor.TABLE + "("
+                + Instructor.KEY_name + " TEXT ,"
+                + Instructor.KEY_phoneNumber + " TEXT ,"
+                + Instructor.KEY_email + " TEXT ,"
+                + Instructor.KEY_office + " TEXT ,"
+                + Instructor.KEY_rateMyProfessorId + " TEXT )";
         db.execSQL(CREATE_TABLE_USER);
         db.execSQL(CREATE_TABLE_COURSE);
         db.execSQL(importCourseInfo());
+        db.execSQL(CREATE_TABLE_INSTRUCTOR);
+        db.execSQL(importInstructorInfo());
     }
 
     @Override
@@ -47,14 +56,15 @@ public class DButils extends SQLiteOpenHelper {
         //如果旧表存在，删除，所以数据将会消失
         db.execSQL("DROP TABLE IF EXISTS "+ User.TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+ Course.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS "+ Instructor.TABLE);
 
         //再次创建表
         onCreate(db);
     }
 
-    public String importCourseInfo() {
+    private String importCourseInfo() {
 
-        String sql = "Insert into " + Course.TABLE + " (" + Course.KEY_courseNumber + "," + Course.KEY_title + ","
+        return "Insert into " + Course.TABLE + " (" + Course.KEY_courseNumber + "," + Course.KEY_title + ","
                 + Course.KEY_creditHours + "," + Course.KEY_description + "," + Course.KEY_crn + "," + Course.KEY_section + ","
                 + Course.KEY_day + "," + Course.KEY_startTime + "," + Course.KEY_endTime + "," + Course.KEY_instructor + "," + Course.KEY_location + "," + Course.KEY_prerequisites + ") values " +
                 "('3119', 'Introduction to Programming', '3', 'Introductory course in writing simple computer programs using Python; data-analytic thinking and business applications through hands-on practices. No prior knowledge or experience in programming is required.', '11765', '10', 'T/Th', '09:35', '10:50', 'Shivraj Kanungo', 'Duques-Bus Sch | Room 351', 'No'), " +
@@ -74,7 +84,21 @@ public class DButils extends SQLiteOpenHelper {
                 "('6225', 'Cloud Foundations', '3', 'Concepts of cloud managed enterprise architecture as a management tool to align information technology assets, people, operations, and projects with operational characteristics.', '16378', '10', 'W', '19:10', '21:40', 'Anya Mendenhall', 'Duques-Bus Sch | Room 250', 'No'), " +
                 "('6233', 'Emerging Technologies', '3', 'Developments in scientific and technological innovation, including automation, energy, medicine, bioengineering, social science, information technology, and space. Forecasting technological advances and assessing their economic and social effects.', 'lecture:15782, discussion:18323', 'lecture: ON, discussion: N30', 'Su', '9:30', '10:30', 'Elias Carayannis', 'Duques-Bus Sch | Room 353', 'No')";
 
-        return sql;
+    }
+
+    private String importInstructorInfo() {
+        return "Insert into " + Instructor.TABLE + " (" + Instructor.KEY_name + "," + Instructor.KEY_phoneNumber + "," + Instructor.KEY_email + "," + Instructor.KEY_office + "," + Instructor.KEY_rateMyProfessorId + ") values " +
+                "('Shivraj Kanungo', '202-994-3734', 'kanungo@gwu.edu', 'DUQUES 515E', '2643395'), " +
+                "('Zhen Sun', '202-994-4919', 'zhens@gwu.edu', 'Funger511', '2328578'), " +
+                "('Yixin Lu', '202-994-4364', 'yixinlu@gwu.edu', 'Funger 513', '2346254'), " +
+                "('Subhasish Dasgupta', '202-994-7408', 'dasgupta@gwu.edu', 'Funger 515B', null), " +
+                "('Young Ki Park', '202-994-9581', 'ykpark@gwu.edu', 'Funger 515E', '2154607'), " +
+                "('Elias Carayannis', '202-873-0262', 'caraye@gwu.edu', 'DUQUES 515C', '314719'), " +
+                "('Wei Chen', '301-693-2005', 'wei_chen@gwu.edu', 'Funger512', '2601257'), " +
+                "('Scott White', '571-553-5020', 'cybersec@gwu.edu', 'DUQUES 515D', '2298256'), " +
+                "('Wenjing Duan', '202-994-3217', 'wduan@gwu.edu', 'Funger 515F', '1025041'), " +
+                "('Richard Donnelly', '202-994-7155', 'rgd@gwu.edu', 'DUQUES 515A', '527955'), " +
+                "('Anya Mendenhall', '571-665-8024', 'agueniss@gwu.edu', 'DUQUES 515B', '2539797')";
     }
 
 

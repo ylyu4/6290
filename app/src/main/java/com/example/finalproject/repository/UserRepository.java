@@ -28,7 +28,7 @@ public class UserRepository {
     }
 
     public boolean findAccount(String username, String password) {
-        SQLiteDatabase db = dButils.getWritableDatabase();
+        SQLiteDatabase db = dButils.getReadableDatabase();
         String selectQuery = "SELECT *"+
                 " FROM " + User.TABLE
                 + " WHERE " +
@@ -39,7 +39,7 @@ public class UserRepository {
     }
 
     public boolean findUsername(String username) {
-        SQLiteDatabase db = dButils.getWritableDatabase();
+        SQLiteDatabase db = dButils.getReadableDatabase();
         String selectQuery = "SELECT *"+
                 " FROM " + User.TABLE
                 + " WHERE " +
