@@ -59,6 +59,8 @@ public class SearchActivity extends AppCompatActivity {
         Intent intent = new Intent(SearchActivity.this, CourseResultActivity.class);
         Bundle parameter = new Bundle();
         parameter.putString("courseNumber", spinnerCourse.getSelectedItem().toString());
+        parameter.putString("term", term.getSelectedItem().toString());
+        parameter.putString("subject", subject.getSelectedItem().toString());
         intent.putExtras(parameter);
         startActivity(intent);
         finish();

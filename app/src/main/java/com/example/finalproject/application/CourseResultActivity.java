@@ -28,7 +28,18 @@ public class CourseResultActivity extends AppCompatActivity {
 
     private final CartDomainService cartDomainService = new CartDomainService(this);
 
-    private static final String KEY = "courseNumber";
+    private static final String COURSE_NUMBER_KEY = "courseNumber";
+
+    private static final String TERM_KEY = "term";
+
+    private static final String SUBJECT_KEY = "subject";
+
+    @BindView(R.id.termTitle)
+    TextView termTitle;
+
+    @BindView(R.id.subjectTitle)
+    TextView subjectTitle;
+
 
     @BindView(R.id.courseNumber)
     TextView courseNumber;
@@ -72,6 +83,12 @@ public class CourseResultActivity extends AppCompatActivity {
     @BindView(R.id.backToSearchPage)
     Button backToSearchPage;
 
+    @BindView(R.id.backToHomePage)
+    Button backToHomePage;
+
+    @BindView(R.id.goToCartPage)
+    Button goToCartPage;
+
     @SneakyThrows
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +103,9 @@ public class CourseResultActivity extends AppCompatActivity {
         if (parameter == null) {
             startActivity(new Intent(CourseResultActivity.this, SearchActivity.class));
         } else {
-            String courseNum = Objects.requireNonNull(parameter.get(KEY)).toString();
+            String courseNum = Objects.requireNonNull(parameter.get(COURSE_NUMBER_KEY)).toString();
+            termTitle.setText(String.format("Term: %s", Objects.requireNonNull(parameter.get(TERM_KEY)).toString()));
+            subjectTitle.setText(String.format("Subject: %s", Objects.requireNonNull(parameter.get(SUBJECT_KEY)).toString()));
             getResult(courseNum);
         }
     }
@@ -95,10 +114,10 @@ public class CourseResultActivity extends AppCompatActivity {
     public void getResult(String courseNum) {
         Course course = courseDomainService.getCourse(courseNum);
         if (course != null) {
-            courseNumber.setText(course.getCourseNumber());
-            title.setText(course.getTitle());
-            creditHours.setText(course.getCreditHours());
-            description.setText(course.getDescription());
+            courseNumber.setText(String.format("Course Number: %s", course.getCourseNumber()));
+            title.setText(String.format("Title: %s", course.getTitle()));
+            creditHours.setText(String.format("Credit Hours: %s", course.getCreditHours()));
+            description.setText(String.format("Description: %s", course.getDescription()));
             crn.setText(course.getCrn());
             instructor.setText(course.getInstructor());
             section.setText(course.getSection());
@@ -108,8 +127,8 @@ public class CourseResultActivity extends AppCompatActivity {
             Instructor instructor = instructorDomainService.getInstructor(course.getInstructor());
             if (instructor != null) {
                 String rateMyProfessorId = instructor.getRateMyProfessorId();
-                grade.setText(HtmlParseUtil.getProfessorPoint(rateMyProfessorId));
-                difficulty.setText(HtmlParseUtil.getProfessorDifficulty(rateMyProfessorId));
+                grade.setText(String.format("%s/5.0", HtmlParseUtil.getProfessorPoint(rateMyProfessorId)));
+                difficulty.setText(String.format("%s/5.0", HtmlParseUtil.getProfessorDifficulty(rateMyProfessorId)));
             }
         }
     }
@@ -121,6 +140,11 @@ public class CourseResultActivity extends AppCompatActivity {
 
     @OnClick(R.id.backToSearchPage)
     public void backToSearchPage() {
+        startActivity(new Intent(CourseResultActivity.this, SearchActivity.class));
+    }
+
+    @OnClick(R.id.backToHomePage)
+    public void setBackToHomePage() {
         startActivity(new Intent(CourseResultActivity.this, MainMenuActivity.class));
     }
 }

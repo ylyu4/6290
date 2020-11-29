@@ -1,6 +1,8 @@
 package com.example.finalproject.utils;
 
 import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -19,6 +21,10 @@ public class HtmlParseUtil {
 
     public static String getProfessorDifficulty(String id) throws IOException {
         String url = URL_PREFIX + id;
-        return Jsoup.parse(new URL(url), 30000).getElementsByClass("FeedbackItem__FeedbackNumber-uof32n-1").eq(0).text();
+        Elements element = Jsoup.parse(new URL(url), 30000).getElementsByClass("FeedbackItem__FeedbackNumber-uof32n-1");
+        if (element.size() > 1) {
+            return element.eq(element.size() - 1).text();
+        }
+        return element.eq(0).text();
     }
 }

@@ -44,5 +44,22 @@ public class TextUtil {
         String[] arr = str.split(",");
         return Arrays.asList(arr);
     }
+
+    public static String parseOnlineCrn(String str) {
+        StringBuilder sb  = new StringBuilder();
+        char[] cha = str.toCharArray();
+
+        for (char c : cha) {
+            if (c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6'
+                    || c == '7' || c == '8' || c == '9') {
+                sb.append(c);
+            }
+            if (sb.length() == 5) {
+                sb.append(",");
+            }
+        }
+
+        return sb.toString();
+    }
 }
 
