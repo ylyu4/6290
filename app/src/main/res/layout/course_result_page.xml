@@ -53,23 +53,42 @@
             android:gravity="center_horizontal"
             android:textSize="35dp"
             android:layout_marginTop="30dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Term: "
+                android:layout_marginLeft="30dp"
+                android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/termTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Term: N/A"
-            android:layout_marginLeft="30dp"
-            android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/termTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="N/A" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/subjectTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Subject: N/A"
-            android:layout_marginLeft="30dp"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subject: "
+                android:layout_marginLeft="30dp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/subjectTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="N/A"
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="400dp"
@@ -78,42 +97,80 @@
             android:layout_gravity="center"
             android:layout_marginTop="25dp"/>
 
-        <TextView
-            android:id="@+id/courseNumber"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Course Number: N/A"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Course Number: "
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/courseNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="N/A" />
 
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/title"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Title: N/A"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:textStyle="bold"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title: "
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="N/A"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/creditHours"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Credit Hours: N/A"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:textStyle="bold"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Credit Hours: "
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/creditHours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="N/A"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/description"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Description: N/A"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:textStyle="bold"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description: "
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="N/A"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+
 
         <HorizontalScrollView
             android:layout_width="match_parent"

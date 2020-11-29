@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.finalproject.model.User;
 import com.example.finalproject.utils.DButils;
+import com.example.finalproject.utils.TextUtil;
 
 public class UserRepository {
 
@@ -22,6 +23,7 @@ public class UserRepository {
         ContentValues values = new ContentValues();
         values.put(User.KEY_username, user.getUsername());
         values.put(User.KEY_password, user.getPassword());
+        values.put(User.KEY_registeredCourses, TextUtil.listToString(user.getRegisteredCourses()));
         long res = db.insert(User.TABLE,null,values);
         db.close();
         return (int)res;

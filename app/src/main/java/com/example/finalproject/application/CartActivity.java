@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -30,6 +31,9 @@ public class CartActivity extends AppCompatActivity {
 
     private final CourseDomainService courseDomainService = new CourseDomainService(this);
 
+
+    @BindView(R.id.courseCartLayout)
+    LinearLayout courseCartLayout;
 
     @BindView(R.id.registerCourses)
     Button registerCourses;
@@ -68,41 +72,41 @@ public class CartActivity extends AppCompatActivity {
             linearLayout.setId(i);
 
             TextView crnTextView = new TextView(this);
-            crnTextView.setWidth(60);
-            crnTextView.setHeight(50);
-            crnTextView.setText(12);
+            crnTextView.setWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics()));
+            crnTextView.setHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
+            crnTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
             crnTextView.setGravity(Gravity.CENTER);
             crnTextView.setText(TextUtil.parseOnlineCrn(courseList.get(i).getCrn()));
             linearLayout.addView(crnTextView);
 
             TextView classTextView = new TextView(this);
-            classTextView.setWidth(60);
-            classTextView.setHeight(50);
-            classTextView.setText(12);
+            classTextView.setWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics()));
+            classTextView.setHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
+            classTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
             classTextView.setGravity(Gravity.CENTER);
             classTextView.setText(courseList.get(i).getCourseNumber());
             linearLayout.addView(classTextView);
 
             TextView titleTextView = new TextView(this);
-            titleTextView.setWidth(60);
-            titleTextView.setHeight(50);
-            titleTextView.setText(12);
+            titleTextView.setWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 95, getResources().getDisplayMetrics()));
+            titleTextView.setHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
+            titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
             titleTextView.setGravity(Gravity.CENTER);
             titleTextView.setText(courseList.get(i).getTitle());
             linearLayout.addView(titleTextView);
 
             TextView sectionTextView = new TextView(this);
-            sectionTextView.setWidth(60);
-            sectionTextView.setHeight(50);
-            sectionTextView.setText(12);
+            sectionTextView.setWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, getResources().getDisplayMetrics()));
+            sectionTextView.setHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
+            sectionTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
             sectionTextView.setGravity(Gravity.CENTER);
             sectionTextView.setText(courseList.get(i).getSection());
             linearLayout.addView(sectionTextView);
 
             TextView typeTextView = new TextView(this);
-            typeTextView.setWidth(60);
-            typeTextView.setHeight(50);
-            typeTextView.setText(12);
+            typeTextView.setWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, getResources().getDisplayMetrics()));
+            typeTextView.setHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
+            typeTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
             typeTextView.setGravity(Gravity.CENTER);
             typeTextView.setText(courseList.get(i).getCrn().length() == 5 ? "Lecture" : "Online/Discussion");
             linearLayout.addView(typeTextView);
@@ -113,6 +117,10 @@ public class CartActivity extends AppCompatActivity {
                 cartDomainService.dropCourse(MainMenuActivity.USERNAME, classTextView.getText().toString());
                 startActivity(new Intent(CartActivity.this, CartActivity.class));
             });
+            linearLayout.addView(courseButton);
+
+            courseCartLayout.addView(linearLayout);
+
         }
     }
 

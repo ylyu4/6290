@@ -29,6 +29,9 @@ public class TextUtil {
     }
 
     public static String listToString(List<String> list) {
+        if (list == null) {
+            return null;
+        }
         StringBuilder converted = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
             if (i != list.size() - 1) {

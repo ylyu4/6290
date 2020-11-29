@@ -51,4 +51,9 @@ public class MainMenuActivity extends AppCompatActivity {
         finish();
     }
 
+    @OnClick(R.id.myCart)
+    public void goToMyCartPage() {
+        startActivity(new Intent(MainMenuActivity.this, CartActivity.class));
+    }
+
 }

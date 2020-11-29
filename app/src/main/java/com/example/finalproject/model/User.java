@@ -1,5 +1,7 @@
 package com.example.finalproject.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,8 +21,12 @@ public class User {
 
     public static final String KEY_password = "password";
 
+    public static final String KEY_registeredCourses = "registeredCourses";
+
 
     private String username;
 
     private String password;
+
+    private List<String> registeredCourses;
 }

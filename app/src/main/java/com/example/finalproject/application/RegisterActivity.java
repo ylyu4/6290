@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        userDomainService.register(new User(username, password));
+        userDomainService.register(new User(username, password, null));
         Toast.makeText(this, "Create account successfully",Toast.LENGTH_SHORT).show();
     }
 

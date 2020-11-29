@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.finalproject.model.Cart;
 import com.example.finalproject.model.Course;
 import com.example.finalproject.model.Instructor;
-import com.example.finalproject.model.Schedule;
 import com.example.finalproject.model.User;
 
 public class DButils extends SQLiteOpenHelper {
@@ -26,7 +25,8 @@ public class DButils extends SQLiteOpenHelper {
         //创建数据表
         String CREATE_TABLE_USER="CREATE TABLE "+ User.TABLE + "("
                 + User.KEY_username + " TEXT ,"
-                + User.KEY_password + " TEXT )";
+                + User.KEY_password + " TEXT ,"
+                + User.KEY_registeredCourses + " TEXT )";
         String CREATE_TABLE_COURSE = "CREATE TABLE " + Course.TABLE + "("
                 + Course.KEY_courseNumber + " TEXT ,"
                 + Course.KEY_title + " TEXT ,"
@@ -49,16 +49,12 @@ public class DButils extends SQLiteOpenHelper {
         String CREATE_TABLE_CART = "CREATE TABLE " + Cart.TABLE + "("
                 + Cart.KEY_username + " TEXT ,"
                 + Cart.KEY_courseInCart + " TEXT )";
-        String CREATE_TABLE_SCHEDULE = "CREATE TABLE " + Schedule.TABLE + "("
-                + Schedule.KEY_username + " TEXT ,"
-                + Schedule.KEY_selectedCourse + " TEXT )";
         db.execSQL(CREATE_TABLE_USER);
         db.execSQL(CREATE_TABLE_COURSE);
         db.execSQL(importCourseInfo());
         db.execSQL(CREATE_TABLE_INSTRUCTOR);
         db.execSQL(importInstructorInfo());
         db.execSQL(CREATE_TABLE_CART);
-        db.execSQL(CREATE_TABLE_SCHEDULE);
     }
 
     @Override
@@ -68,7 +64,6 @@ public class DButils extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+ Course.TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+ Instructor.TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+ Cart.TABLE);
-        db.execSQL("DROP TABLE IF EXISTS "+ Schedule.TABLE);
 
         //再次创建表
         onCreate(db);

@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/coursesCartLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -80,7 +81,7 @@
                     android:textStyle="bold"
                     android:gravity="center" />
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="95dp"
                     android:layout_height="55dp"
                     android:background="#ADD8E6"
                     android:text="Title"
@@ -96,7 +97,7 @@
                     android:textStyle="bold"
                     android:gravity="center" />
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="65dp"
                     android:layout_height="55dp"
                     android:background="#ADD8E6"
                     android:text="Type"
