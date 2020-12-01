@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.finalproject.model.Cart;
 import com.example.finalproject.model.User;
 import com.example.finalproject.utils.DButils;
 import com.example.finalproject.utils.TextUtil;
@@ -48,6 +49,14 @@ public class UserRepository {
                 User.KEY_username + "=?";
         @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, new String[]{username});
         return cursor.moveToFirst();
+    }
+
+    public void updateUserRegisteredCourse(String username, String courses) {
+        SQLiteDatabase db = dButils.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(User.KEY_registeredCourses, courses);
+        long res = db.update(User.TABLE, values, Cart.KEY_username + "=?", new String[]{username});
+        db.close();
     }
 
     public void cleanData() {

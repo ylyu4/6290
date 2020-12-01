@@ -3,8 +3,10 @@ package com.example.finalproject.service;
 
 import android.content.Context;
 
+import com.example.finalproject.model.Cart;
 import com.example.finalproject.model.User;
 import com.example.finalproject.repository.UserRepository;
+import com.example.finalproject.utils.TextUtil;
 
 public class UserDomainService {
 
@@ -24,6 +26,10 @@ public class UserDomainService {
 
     public boolean validateUsernameExist(String username) {
         return userRepository.findUsername(username);
+    }
+
+    public void updateUserRegisteredCourse(Cart cart) {
+        userRepository.updateUserRegisteredCourse(cart.getUsername(), TextUtil.listToString(cart.getCourseInCart()));
     }
 
 }

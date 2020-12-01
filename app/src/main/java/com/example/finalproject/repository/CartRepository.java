@@ -38,8 +38,8 @@ public class CartRepository {
     public void updateCourseInCart(String username, String course) {
         SQLiteDatabase db = dButils.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Cart.KEY_username, username);
-        long res = db.update(Cart.TABLE, values, Cart.KEY_courseInCart + "=?", new String[]{course});
+        values.put(Cart.KEY_courseInCart, course);
+        long res = db.update(Cart.TABLE, values, Cart.KEY_username + "=?", new String[]{username});
         db.close();
     }
 
@@ -54,7 +54,7 @@ public class CartRepository {
         return null;
     }
 
-    public void deleteAllCourseInCart(String username) {
+    public void clearCart(String username) {
         SQLiteDatabase db = dButils.getWritableDatabase();
         db.execSQL("delete from " + Cart.TABLE + " where " + Cart.KEY_username + " =" + username);
     }

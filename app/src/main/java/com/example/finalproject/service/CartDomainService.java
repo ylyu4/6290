@@ -1,6 +1,8 @@
 package com.example.finalproject.service;
 
 import android.content.Context;
+import android.util.Log;
+
 
 import com.example.finalproject.model.Cart;
 import com.example.finalproject.repository.CartRepository;
@@ -28,16 +30,48 @@ public class CartDomainService {
     public void dropCourse(String username, String course) {
         Cart cart = cartRepository.getCourseInCart(username);
         cart.getCourseInCart().remove(course);
-        cartRepository.updateCourseInCart(cart.getUsername(), TextUtil.listToString(cart.getCourseInCart()));
+        Log.v("Course List", cart.getCourseInCart().toString());
+        if (cart.getCourseInCart().size() == 0) {
+            cartRepository.clearCart(username);
+        } else {
+            cartRepository.updateCourseInCart(cart.getUsername(), TextUtil.listToString(cart.getCourseInCart()));
+        }
 
-    }
-
-    public void clearCart(String username) {
-        cartRepository.deleteAllCourseInCart(username);
     }
 
     public List<String> getCouseList(String username) {
-        return cartRepository.getCourseInCart(username).getCourseInCart();
+        Cart cart = getCart(username);
+        if (cart != null) {
+            return cartRepository.getCourseInCart(username).getCourseInCart();
+        } else {
+            return null;
+        }
+
+    }
+
+    public Cart getCart(String username) {
+        return cartRepository.getCourseInCart(username);
+    }
+
+    public boolean validateUserExistInCart(String username) {
+        return cartRepository.getCourseInCart(username) != null;
+    }
+
+    public boolean validateCourseIsInCart(String username, String course) {
+        List<String> courseList = getCouseList(username);
+        if (courseList == null || courseList.size() == 0) {
+            return false;
+        }
+        for (String element : courseList) {
+            if (element.equals(course)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void checkOutCourseInCart(String username) {
+        cartRepository.clearCart(username);
     }
 
 }

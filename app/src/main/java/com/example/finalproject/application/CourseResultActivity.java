@@ -140,6 +140,10 @@ public class CourseResultActivity extends AppCompatActivity {
 
     @OnClick(R.id.addCourseToCart)
     public void addCourse() {
+        if (cartDomainService.validateCourseIsInCart(MainMenuActivity.USERNAME, courseNumber.getText().toString())) {
+            Toast.makeText(this, "Can't add this course because it is already in your cart",Toast.LENGTH_SHORT).show();
+            return;
+        }
         cartDomainService.addCourseInCart(MainMenuActivity.USERNAME, courseNumber.getText().toString());
         Toast.makeText(this, "The course is added in your cart",Toast.LENGTH_SHORT).show();
     }
