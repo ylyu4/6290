@@ -20,6 +20,7 @@ import com.example.finalproject.service.CartDomainService;
 import com.example.finalproject.service.CourseDomainService;
 import com.example.finalproject.service.UserDomainService;
 import com.example.finalproject.utils.TextUtil;
+import com.example.finalproject.utils.TimeUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -150,12 +151,19 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @OnClick(R.id.registerCourses)
     public void registerCourses() {
         Cart cart = cartDomainService.getCart(MainMenuActivity.USERNAME);
         if (cart == null || cart.getCourseInCart() == null || cart.getCourseInCart().size() == 0) {
             Toast.makeText(this, "Can't register because course cart is empty",Toast.LENGTH_SHORT).show();
         } else {
+            List<Course> courseList = cartDomainService.getCouseList(MainMenuActivity.USERNAME).stream()
+                    .map(courseDomainService::getCourse).collect(Collectors.toList());
+            if (TimeUtil.validateTimeConflicts(courseList)) {
+                Toast.makeText(this, "Can't register because course time conflict",Toast.LENGTH_SHORT).show();
+                return;
+            }
             userDomainService.updateUserRegisteredCourse(cart);
             cartDomainService.checkOutCourseInCart(MainMenuActivity.USERNAME);
             startActivity(new Intent(CartActivity.this, ScheduleActivity.class));
