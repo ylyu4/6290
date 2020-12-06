@@ -8,9 +8,12 @@ import com.example.finalproject.model.User;
 import com.example.finalproject.repository.UserRepository;
 import com.example.finalproject.utils.TextUtil;
 
+import java.util.List;
+
 public class UserDomainService {
 
     private final UserRepository userRepository;
+
 
     public UserDomainService(Context context) {
         userRepository = new UserRepository(context);
@@ -32,4 +35,7 @@ public class UserDomainService {
         userRepository.updateUserRegisteredCourse(cart.getUsername(), TextUtil.listToString(cart.getCourseInCart()));
     }
 
+    public List<String> getCourseListByUsername(String username) {
+        return userRepository.getRegisteredCourseByUsername(username);
+    }
 }

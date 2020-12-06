@@ -11,6 +11,8 @@ import com.example.finalproject.model.User;
 import com.example.finalproject.utils.DButils;
 import com.example.finalproject.utils.TextUtil;
 
+import java.util.List;
+
 public class UserRepository {
 
     private DButils dButils;
@@ -63,6 +65,20 @@ public class UserRepository {
         SQLiteDatabase db = dButils.getWritableDatabase();
         String deleteQuery = "Delete from " + User.TABLE;
         db.execSQL(deleteQuery);
+    }
+
+    public List<String> getRegisteredCourseByUsername(String username) {
+        SQLiteDatabase db = dButils.getWritableDatabase();
+        String selectQuery = "SELECT *"+
+                " FROM " + User.TABLE
+                + " WHERE " +
+                User.KEY_username + "=?";
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery(selectQuery, new String[]{username});
+        if (cursor.moveToFirst()) {
+            return TextUtil.stringToList(cursor.getString(cursor.getColumnIndex(User.KEY_registeredCourses)));
+        } else {
+            return null;
+        }
     }
 
 }

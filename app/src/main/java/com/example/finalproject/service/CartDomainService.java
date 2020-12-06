@@ -70,6 +70,17 @@ public class CartDomainService {
         return false;
     }
 
+    public boolean validateMaxNumOfAllCoursesInCart(String username) {
+        List<String> courseList = getCouseList(username);
+        if (courseList == null) {
+            return false;
+        }
+        if (courseList.size() == 6) {
+            return true;
+        }
+        return false;
+    }
+
     public void checkOutCourseInCart(String username) {
         cartRepository.clearCart(username);
     }

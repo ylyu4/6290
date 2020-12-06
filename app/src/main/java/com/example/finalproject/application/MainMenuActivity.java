@@ -56,4 +56,9 @@ public class MainMenuActivity extends AppCompatActivity {
         startActivity(new Intent(MainMenuActivity.this, CartActivity.class));
     }
 
+    @OnClick(R.id.classSchedule)
+    public void goToSchedulePage() {
+        startActivity(new Intent(MainMenuActivity.this, ScheduleActivity.class));
+    }
+
 }

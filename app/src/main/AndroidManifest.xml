@@ -24,6 +24,7 @@
         <activity android:name=".application.CourseResultActivity"/>
         <activity android:name=".application.MainMenuActivity" />
         <activity android:name=".application.CartActivity" />
+        <activity android:name=".application.ScheduleActivity" />
 
     </application>
 
