@@ -1,9 +1,17 @@
 package com.example.finalproject.application;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -91,6 +99,9 @@ public class CourseResultActivity extends AppCompatActivity {
     @BindView(R.id.goToCartPage)
     Button goToCartPage;
 
+    @BindView(R.id.instructorInfo)
+    ImageButton instructorInfo;
+
     @SneakyThrows
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,6 +161,58 @@ public class CourseResultActivity extends AppCompatActivity {
         }
         cartDomainService.addCourseInCart(MainMenuActivity.USERNAME, courseNumber.getText().toString());
         Toast.makeText(this, "The course is added in your cart",Toast.LENGTH_SHORT).show();
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    @OnClick(R.id.instructorInfo)
+    public void checkInstructorInfo(View v1) {
+        Instructor instructor1 = instructorDomainService.getInstructor(instructor.getText().toString());
+        LayoutInflater inflater=LayoutInflater.from( this );
+        @SuppressLint("InflateParams") View myView=inflater.inflate(R.layout.instructor_info_popup,null);//引用自定义布局
+        LinearLayout linearLayout = (LinearLayout) myView.findViewById(R.id.popup);
+        TextView name = new TextView(this);
+        TextView phoneNumber = new TextView(this);
+        TextView email = new TextView(this);
+        TextView office = new TextView(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        name.setLayoutParams(params);
+        name.setText(String.format("Instructor name: %s", instructor1.getName()));
+        name.setGravity(Gravity.CENTER);
+        linearLayout.addView(name);
+
+        phoneNumber.setLayoutParams(params);
+        phoneNumber.setText(String.format("Instructor phone number: %s", instructor1.getPhoneNumber()));
+        phoneNumber.setGravity(Gravity.CENTER);
+        linearLayout.addView(phoneNumber);
+
+        email.setLayoutParams(params);
+        email.setText(String.format("Instructor email: %s", instructor1.getEmail()));
+        email.setGravity(Gravity.CENTER);
+        linearLayout.addView(email);
+
+        office.setLayoutParams(params);
+        office.setText(String.format("Instructor office: %s", instructor1.getOffice()));
+        office.setGravity(Gravity.CENTER);
+        linearLayout.addView(office);
+
+        Button button = new Button(this);
+        button.setText("Close");
+        ViewGroup.LayoutParams buttonParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        button.setLayoutParams(buttonParams);
+        button.setGravity(Gravity.CENTER);
+
+        linearLayout.setGravity(Gravity.CENTER);
+        linearLayout.addView(button);
+
+        PopupWindow popupWindow=new PopupWindow(myView,700,450 );//后面是像素大小
+
+        button.setOnClickListener(view -> popupWindow.dismiss());
+
+        popupWindow.showAtLocation(v1, Gravity.CENTER, 0, 0);
+
     }
 
     @OnClick(R.id.backToSearchPage)
