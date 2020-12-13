@@ -44,6 +44,16 @@ public class CourseResultActivity extends AppCompatActivity {
 
     private static final String SUBJECT_KEY = "subject";
 
+    private static final String LOCATION_KEY = "location";
+
+    private static String courseNum;
+
+    private static String term;
+
+    private static String subject;
+
+
+
     @BindView(R.id.termTitle)
     TextView termTitle;
 
@@ -102,6 +112,10 @@ public class CourseResultActivity extends AppCompatActivity {
     @BindView(R.id.instructorInfo)
     ImageButton instructorInfo;
 
+    @BindView(R.id.map)
+    ImageButton map;
+
+
     @SneakyThrows
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,18 +127,18 @@ public class CourseResultActivity extends AppCompatActivity {
         setContentView(R.layout.course_result_page);
         ButterKnife.bind(this);
         Bundle parameter = getIntent().getExtras();
-        if (parameter == null) {
-            startActivity(new Intent(CourseResultActivity.this, SearchActivity.class));
-        } else {
-            String courseNum = Objects.requireNonNull(parameter.get(COURSE_NUMBER_KEY)).toString();
-            termTitle.setText(String.format("Term: %s", Objects.requireNonNull(parameter.get(TERM_KEY)).toString()));
-            subjectTitle.setText(String.format("Subject: %s", Objects.requireNonNull(parameter.get(SUBJECT_KEY)).toString()));
-            getResult(courseNum);
+        if (parameter != null) {
+            courseNum = Objects.requireNonNull(parameter.get(COURSE_NUMBER_KEY)).toString();
+            term =  Objects.requireNonNull(parameter.get(TERM_KEY)).toString();
+            subject =  Objects.requireNonNull(parameter.get(SUBJECT_KEY)).toString();
         }
+        getResult(courseNum);
     }
 
     @SneakyThrows
     public void getResult(String courseNum) {
+        termTitle.setText(term);
+        subjectTitle.setText(subject);
         Course course = courseDomainService.getCourse(courseNum);
         if (course != null) {
             courseNumber.setText(course.getCourseNumber());
@@ -156,11 +170,11 @@ public class CourseResultActivity extends AppCompatActivity {
             return;
         }
         if (cartDomainService.validateMaxNumOfAllCoursesInCart(MainMenuActivity.USERNAME)) {
-            Toast.makeText(this, "You are only allowed to select 6 course in your cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You are only allowed to select 6 courses in your cart", Toast.LENGTH_SHORT).show();
             return;
         }
         cartDomainService.addCourseInCart(MainMenuActivity.USERNAME, courseNumber.getText().toString());
-        Toast.makeText(this, "The course is added in your cart",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "The course is added to your cart",Toast.LENGTH_SHORT).show();
     }
 
 
@@ -169,7 +183,7 @@ public class CourseResultActivity extends AppCompatActivity {
     public void checkInstructorInfo(View v1) {
         Instructor instructor1 = instructorDomainService.getInstructor(instructor.getText().toString());
         LayoutInflater inflater=LayoutInflater.from( this );
-        @SuppressLint("InflateParams") View myView=inflater.inflate(R.layout.instructor_info_popup,null);//引用自定义布局
+        @SuppressLint("InflateParams") View myView=inflater.inflate(R.layout.instructor_info_popup,null);
         LinearLayout linearLayout = (LinearLayout) myView.findViewById(R.id.popup);
         TextView name = new TextView(this);
         TextView phoneNumber = new TextView(this);
@@ -207,13 +221,26 @@ public class CourseResultActivity extends AppCompatActivity {
         linearLayout.setGravity(Gravity.CENTER);
         linearLayout.addView(button);
 
-        PopupWindow popupWindow=new PopupWindow(myView,700,450 );//后面是像素大小
+        PopupWindow popupWindow=new PopupWindow(myView,700,450 );
 
         button.setOnClickListener(view -> popupWindow.dismiss());
 
         popupWindow.showAtLocation(v1, Gravity.CENTER, 0, 0);
 
     }
+
+
+
+    @OnClick(R.id.map)
+    public void showMap() {
+        Intent intent = new Intent(CourseResultActivity.this, MapActivity.class);
+        Bundle parameter = new Bundle();
+        parameter.putString(LOCATION_KEY, location.getText().toString());
+        intent.putExtras(parameter);
+        startActivity(intent);
+        finish();
+    }
+
 
     @OnClick(R.id.backToSearchPage)
     public void backToSearchPage() {

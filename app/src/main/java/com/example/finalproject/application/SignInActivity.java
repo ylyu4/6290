@@ -54,9 +54,9 @@ public class SignInActivity extends AppCompatActivity {
             finish();
         } else {
             if (userDomainService.validateUsernameExist(loginUsername.getText().toString())) {
-                Toast.makeText(this, "Your password is incorrect", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Your username is not exist",
+                Toast.makeText(this, "Username does not exist",
                         Toast.LENGTH_SHORT).show();
             }
         }

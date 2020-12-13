@@ -35,9 +35,9 @@ public class ScheduleActivity extends AppCompatActivity {
 
 
     private static HashMap<String, Integer> marginMap = new HashMap<String, Integer>() {{
-        put("19:10", 420);
+        put("19:10", 415);
         put("16:30", 310);
-        put("15:45", 250);
+        put("15:45", 270);
         put("19:30", 430);
         put("09:30", 15);
         put("09:35", 17);
@@ -109,13 +109,13 @@ public class ScheduleActivity extends AppCompatActivity {
                     long timeDiff = MINUTES.between(TimeUtil.parseTime(course.getStartTime()), TimeUtil.parseTime(course.getEndTime()));
                     if (timeDiff == 150) {
                         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                                ((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics())));
+                                ((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 115, getResources().getDisplayMetrics())));
                     } else if (timeDiff == 90) {
                         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                                ((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics())));
+                                ((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, getResources().getDisplayMetrics())));
                     } else {
                         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                                ((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics())));
+                                ((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics())));
                     }
                     params.setMargins(0, ((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, marginMap.get(course.getStartTime()), getResources().getDisplayMetrics())),
                             0, 0);

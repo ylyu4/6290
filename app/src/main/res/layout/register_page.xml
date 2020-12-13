@@ -51,7 +51,7 @@
         android:id="@+id/restriction2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="*Username can only contain digit and letter."
+        android:text="*Username can only contain digits and letters."
         android:textAlignment="center"
         android:gravity="center_horizontal" />
 
