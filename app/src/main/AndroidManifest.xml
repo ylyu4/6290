@@ -30,9 +30,8 @@
         <activity android:name=".application.RegisterActivity"/>
         <activity android:name=".application.SearchActivity"/>
         <activity android:name=".application.CourseResultActivity"/>
-        <activity android:name=".application.MapActivity"
-            android:label="@string/title_activity_maps"/>
-
+        <activity android:name=".application.MapActivity"/>
+        <activity android:name=".application.CourseListActivity"/>
         <activity android:name=".application.MainMenuActivity" />
         <activity android:name=".application.CartActivity" />
         <activity android:name=".application.ScheduleActivity" />

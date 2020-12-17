@@ -2,6 +2,10 @@ package com.example.finalproject.application;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.finalproject.R;
@@ -26,6 +30,9 @@ public class MainMenuActivity extends AppCompatActivity {
 
     @BindView(R.id.classSchedule)
     TextView classSchedule;
+
+    @BindView(R.id.userInfo1)
+    ImageButton userInfo;
 
 
     @Override
@@ -60,5 +67,27 @@ public class MainMenuActivity extends AppCompatActivity {
     public void goToSchedulePage() {
         startActivity(new Intent(MainMenuActivity.this, ScheduleActivity.class));
     }
+
+    @OnClick(R.id.userInfo1)
+    public void checkUserInfo() {
+        PopupMenu popup = new PopupMenu(MainMenuActivity.this, userInfo);
+        Menu menu = popup.getMenu();
+        popup.getMenuInflater()
+                .inflate(R.menu.popup_menu,menu);
+        MenuItem usernameItem = menu.getItem(0);
+        usernameItem.setTitle("Username: " + USERNAME);
+        MenuItem logoutItem = menu.getItem(1);
+
+
+
+        logoutItem.setOnMenuItemClickListener(menuItem -> {
+            startActivity(new Intent(MainMenuActivity.this, SignInActivity.class));
+            return true;
+        });
+
+        popup.show();
+    }
+
+
 
 }

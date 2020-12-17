@@ -36,15 +36,14 @@
                 android:gravity="center_horizontal" />
 
             <ImageButton
-                android:id="@+id/userInfo4"
+                android:id="@+id/userInfo5"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 app:srcCompat="@android:drawable/ic_menu_my_calendar"/>
         </LinearLayout>
-
         <LinearLayout
-            android:id="@+id/courseCartLayout"
+            android:id="@+id/courseListLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -52,7 +51,7 @@
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Course Cart"
+                android:text="Course List"
                 android:textColor="#4682B4"
                 android:textStyle="bold"
                 android:textAlignment="center"
@@ -65,23 +64,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="45dp"
                     android:layout_height="55dp"
-                    android:text="CRN"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:background="#ADD8E6"
-                    android:gravity="center" />
-                <TextView
-                    android:layout_width="60dp"
-                    android:layout_height="55dp"
-                    android:background="#ADD8E6"
                     android:text="Class"
                     android:textSize="15dp"
                     android:textStyle="bold"
+                    android:background="#ADD8E6"
                     android:gravity="center" />
                 <TextView
-                    android:layout_width="95dp"
+                    android:layout_width="75dp"
                     android:layout_height="55dp"
                     android:background="#ADD8E6"
                     android:text="Title"
@@ -89,23 +80,39 @@
                     android:textStyle="bold"
                     android:gravity="center" />
                 <TextView
-                    android:layout_width="65dp"
+                    android:layout_width="70dp"
                     android:layout_height="55dp"
                     android:background="#ADD8E6"
-                    android:text="Section"
+                    android:text="Professor"
                     android:textSize="15dp"
                     android:textStyle="bold"
                     android:gravity="center" />
                 <TextView
-                    android:layout_width="65dp"
+                    android:layout_width="40dp"
                     android:layout_height="55dp"
                     android:background="#ADD8E6"
-                    android:text="Type"
+                    android:text="Day"
                     android:textSize="15dp"
                     android:textStyle="bold"
                     android:gravity="center" />
                 <TextView
-                    android:layout_width="65dp"
+                    android:layout_width="70dp"
+                    android:layout_height="55dp"
+                    android:background="#ADD8E6"
+                    android:text="Time"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="55dp"
+                    android:background="#ADD8E6"
+                    android:text="Map"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+                <TextView
+                    android:layout_width="60dp"
                     android:layout_height="55dp"
                     android:background="#ADD8E6"
                     android:text="Action"
@@ -120,13 +127,6 @@
         </LinearLayout>
 
 
-        <Button
-            android:id="@+id/registerCourses"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Generate Schedule"
-            android:layout_gravity="center"
-            android:layout_marginTop="100dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,20 +136,20 @@
             android:layout_marginTop="100dp">
 
             <Button
-                android:id="@+id/backSearchPage"
+                android:id="@+id/backSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BACK"/>
 
             <Button
-                android:id="@+id/backHomePage"
+                android:id="@+id/backHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home"
                 android:layout_marginLeft="75dp"/>
 
             <Button
-                android:id="@+id/goToSchedulePage"
+                android:id="@+id/goToCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Next"

@@ -6,8 +6,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +57,9 @@ public class CartActivity extends AppCompatActivity {
 
     @BindView(R.id.goToSchedulePage)
     Button next;
+
+    @BindView(R.id.userInfo4)
+    ImageButton userInfo;
 
 
 
@@ -164,8 +171,16 @@ public class CartActivity extends AppCompatActivity {
                 Toast.makeText(this, "Can't register because course time conflict",Toast.LENGTH_SHORT).show();
                 return;
             }
+            StringBuilder reminderMessgae = new StringBuilder();
+            for (Course course : courseList) {
+                String prerequisities = course.getPrerequisites();
+                if (!prerequisities.equals("No")) {
+                    reminderMessgae.append(course.getCourseNumber()).append(" has ").append(prerequisities).append(" as prerequisites. \n");
+                }
+            }
             userDomainService.updateUserRegisteredCourse(cart);
             cartDomainService.checkOutCourseInCart(MainMenuActivity.USERNAME);
+            Toast.makeText(this, reminderMessgae.toString(), Toast.LENGTH_LONG).show();
             startActivity(new Intent(CartActivity.this, ScheduleActivity.class));
         }
     }
@@ -183,6 +198,26 @@ public class CartActivity extends AppCompatActivity {
     @OnClick(R.id.goToSchedulePage)
     public void goToSchedulePage() {
         startActivity(new Intent(CartActivity.this, ScheduleActivity.class));
+    }
+
+    @OnClick(R.id.userInfo4)
+    public void checkUserInfo() {
+        PopupMenu popup = new PopupMenu(CartActivity.this, userInfo);
+        Menu menu = popup.getMenu();
+        popup.getMenuInflater()
+                .inflate(R.menu.popup_menu,menu);
+        MenuItem usernameItem = menu.getItem(0);
+        usernameItem.setTitle("Username: " + MainMenuActivity.USERNAME);
+        MenuItem logoutItem = menu.getItem(1);
+
+
+
+        logoutItem.setOnMenuItemClickListener(menuItem -> {
+            startActivity(new Intent(CartActivity.this, SignInActivity.class));
+            return true;
+        });
+
+        popup.show();
     }
 
 }

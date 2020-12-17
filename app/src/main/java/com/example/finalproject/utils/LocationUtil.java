@@ -17,13 +17,13 @@ public class LocationUtil {
 
 
 
-    public static List<Double> getLangitudeAndLatitude(String location) throws Exception {
+    public static List<Double> getLangitudeAndLatitude(String location) {
         String[] arr = location.split(" ");
 
         if (locationMap.containsKey(arr[0])) {
             return locationMap.get(arr[0]);
         } else {
-            throw new Exception("can not recognize this location");
+            return Arrays.asList(21.262130243719913, -157.80601553877577);
         }
     }
 }

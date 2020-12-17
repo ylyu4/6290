@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +48,8 @@ public class CourseResultActivity extends AppCompatActivity {
     private static final String SUBJECT_KEY = "subject";
 
     private static final String LOCATION_KEY = "location";
+
+    private static final String LAST_PAGE_KEY = "lastPage";
 
     private static String courseNum;
 
@@ -114,6 +119,9 @@ public class CourseResultActivity extends AppCompatActivity {
 
     @BindView(R.id.map)
     ImageButton map;
+
+    @BindView(R.id.userInfo3)
+    ImageButton userInfo;
 
 
     @SneakyThrows
@@ -236,6 +244,7 @@ public class CourseResultActivity extends AppCompatActivity {
         Intent intent = new Intent(CourseResultActivity.this, MapActivity.class);
         Bundle parameter = new Bundle();
         parameter.putString(LOCATION_KEY, location.getText().toString());
+        parameter.putString(LAST_PAGE_KEY, "courseResult");
         intent.putExtras(parameter);
         startActivity(intent);
         finish();
@@ -255,5 +264,25 @@ public class CourseResultActivity extends AppCompatActivity {
     @OnClick(R.id.goToCartPage)
     public void goToCartPage() {
         startActivity(new Intent(CourseResultActivity.this, CartActivity.class));
+    }
+
+    @OnClick(R.id.userInfo3)
+    public void checkUserInfo() {
+        PopupMenu popup = new PopupMenu(CourseResultActivity.this, userInfo);
+        Menu menu = popup.getMenu();
+        popup.getMenuInflater()
+                .inflate(R.menu.popup_menu,menu);
+        MenuItem usernameItem = menu.getItem(0);
+        usernameItem.setTitle("Username: " + MainMenuActivity.USERNAME);
+        MenuItem logoutItem = menu.getItem(1);
+
+
+
+        logoutItem.setOnMenuItemClickListener(menuItem -> {
+            startActivity(new Intent(CourseResultActivity.this, SignInActivity.class));
+            return true;
+        });
+
+        popup.show();
     }
 }

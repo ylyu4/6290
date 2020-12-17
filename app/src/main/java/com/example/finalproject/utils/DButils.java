@@ -10,10 +10,9 @@ import com.example.finalproject.model.Instructor;
 import com.example.finalproject.model.User;
 
 public class DButils extends SQLiteOpenHelper {
-    //数据库版本号
+
     private static final int DATABASE_VERSION=1;
 
-    //数据库名称
     private static final String DATABASE_NAME="project";
 
     public DButils(Context context){
@@ -22,7 +21,6 @@ public class DButils extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //创建数据表
         String CREATE_TABLE_USER="CREATE TABLE "+ User.TABLE + "("
                 + User.KEY_username + " TEXT ,"
                 + User.KEY_password + " TEXT ,"

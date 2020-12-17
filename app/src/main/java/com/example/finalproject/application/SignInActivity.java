@@ -62,6 +62,7 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
+
     @OnClick(R.id.register)
     public void goToRegisterPage() {
         startActivity(new Intent(SignInActivity.this, RegisterActivity.class));

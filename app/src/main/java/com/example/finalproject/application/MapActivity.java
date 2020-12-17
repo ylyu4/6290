@@ -27,7 +27,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
     private static String location;
 
+    private static String lastPage;
+
     private static final String LOCATION_KEY = "location";
+
+    private static final String LAST_PAGE_KEY = "lastPage";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         Bundle parameter = getIntent().getExtras();
         if (parameter != null) {
             location = Objects.requireNonNull(parameter.get(LOCATION_KEY)).toString();
+            lastPage = Objects.requireNonNull(parameter.get(LAST_PAGE_KEY)).toString();
         }
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -43,7 +48,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         final Button button = (Button) findViewById(R.id.backPreviousPage);
         button.setOnClickListener(v -> {
-            startActivity(new Intent(MapActivity.this, CourseResultActivity.class));
+            if (lastPage.equals("courseResult")) {
+                startActivity(new Intent(MapActivity.this, CourseResultActivity.class));
+            } else {
+                startActivity(new Intent(MapActivity.this, CourseListActivity.class));
+            }
         });
     }
 
