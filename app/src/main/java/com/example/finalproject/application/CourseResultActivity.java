@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.example.finalproject.R;
 import com.example.finalproject.model.Course;
 import com.example.finalproject.model.Instructor;
@@ -115,10 +117,10 @@ public class CourseResultActivity extends AppCompatActivity {
     Button goToCartPage;
 
     @BindView(R.id.instructorInfo)
-    ImageButton instructorInfo;
+    Button instructorInfo;
 
     @BindView(R.id.map)
-    ImageButton map;
+    Button map;
 
     @BindView(R.id.userInfo3)
     ImageButton userInfo;
@@ -130,7 +132,7 @@ public class CourseResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        setContentView(R.layout.course_result_page);
+        setContentView(R.layout.search_result_page);
         ButterKnife.bind(this);
         Bundle parameter = getIntent().getExtras();
         if (parameter != null) {
@@ -184,7 +186,7 @@ public class CourseResultActivity extends AppCompatActivity {
     }
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "ResourceAsColor"})
     @OnClick(R.id.instructorInfo)
     public void checkInstructorInfo(View v1) {
         Instructor instructor1 = instructorDomainService.getInstructor(instructor.getText().toString());
@@ -222,6 +224,8 @@ public class CourseResultActivity extends AppCompatActivity {
         ViewGroup.LayoutParams buttonParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         button.setLayoutParams(buttonParams);
+        button.setBackgroundResource(R.drawable.button_shape);
+        button.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
         button.setGravity(Gravity.CENTER);
 
         linearLayout.setGravity(Gravity.CENTER);

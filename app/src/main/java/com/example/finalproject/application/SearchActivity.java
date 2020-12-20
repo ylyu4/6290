@@ -21,6 +21,10 @@ import butterknife.OnClick;
 
 public class SearchActivity extends AppCompatActivity {
 
+    private static final String TERM_KEY = "term";
+
+    private static final String SUBJECT_KEY = "subject";
+
     @BindView(R.id.term)
     Spinner term;
 
@@ -51,7 +55,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.course_search_page);
+        setContentView(R.layout.class_search_page);
         ButterKnife.bind(this);
     }
 
@@ -96,6 +100,8 @@ public class SearchActivity extends AppCompatActivity {
             Bundle parameter = new Bundle();
             parameter.putString("startRange", startText);
             parameter.putString("endRange", endText);
+            parameter.putString(TERM_KEY, term.getSelectedItem().toString());
+            parameter.putString(SUBJECT_KEY, subject.getSelectedItem().toString());
             intent.putExtras(parameter);
             startActivity(intent);
             finish();
@@ -109,8 +115,8 @@ public class SearchActivity extends AppCompatActivity {
             Intent intent = new Intent(SearchActivity.this, CourseResultActivity.class);
             Bundle parameter = new Bundle();
             parameter.putString("courseNumber", spinnerCourse.getSelectedItem().toString());
-            parameter.putString("term", term.getSelectedItem().toString());
-            parameter.putString("subject", subject.getSelectedItem().toString());
+            parameter.putString(TERM_KEY, term.getSelectedItem().toString());
+            parameter.putString(SUBJECT_KEY, subject.getSelectedItem().toString());
             intent.putExtras(parameter);
             startActivity(intent);
             finish();

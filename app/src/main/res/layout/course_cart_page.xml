@@ -39,8 +39,8 @@
                 android:id="@+id/userInfo4"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_menu_my_calendar"/>
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/user"/>
         </LinearLayout>
 
         <LinearLayout
@@ -122,9 +122,11 @@
 
         <Button
             android:id="@+id/registerCourses"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_shape"
             android:text="Generate Schedule"
+            android:textColor="@color/colorWhite"
             android:layout_gravity="center"
             android:layout_marginTop="100dp"/>
 
@@ -139,12 +141,16 @@
                 android:id="@+id/backSearchPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/button_shape"
+                android:textColor="@color/colorWhite"
                 android:text="BACK"/>
 
             <Button
                 android:id="@+id/backHomePage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/button_shape"
+                android:textColor="@color/colorWhite"
                 android:text="Home"
                 android:layout_marginLeft="75dp"/>
 
@@ -152,6 +158,8 @@
                 android:id="@+id/goToSchedulePage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/button_shape"
+                android:textColor="@color/colorWhite"
                 android:text="Next"
                 android:layout_marginLeft="75dp"/>
         </LinearLayout>

@@ -11,7 +11,7 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="#4682B4"
             android:orientation="horizontal">
 
@@ -37,8 +37,8 @@
                 android:id="@+id/userInfo2"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_menu_my_calendar"/>
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/user"/>
         </LinearLayout>
 
         <TextView
@@ -177,6 +177,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Search"
+                android:background="@drawable/button_shape"
+                android:textColor="@color/colorWhite"
                 android:layout_marginLeft="20dp"/>
 
             <Button
@@ -184,6 +186,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Clear"
+                android:background="@drawable/button_shape"
+                android:textColor="@color/colorWhite"
                 android:layout_marginLeft="40dp"/>
         </LinearLayout>
 
@@ -199,6 +203,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="170dp"
+            android:background="@color/colorBlue"
+            android:textColor="@color/colorWhite"
             android:text="Home"/>
         </LinearLayout>
     </LinearLayout>

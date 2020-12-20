@@ -85,6 +85,8 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:layout_gravity="center"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_shape"
         android:layout_marginTop="10dp"/>
 
     <TextView
@@ -106,10 +108,12 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Create Account"
         android:layout_gravity="center"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_shape"
         android:layout_marginTop="5dp"/>
 
 

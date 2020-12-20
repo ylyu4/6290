@@ -127,7 +127,9 @@ public class CartActivity extends AppCompatActivity {
                     linearLayout.addView(typeTextView);
 
                     Button courseButton = new Button(this);
+                    courseButton.setBackgroundResource(R.drawable.button_shape);
                     courseButton.setText("Drop");
+                    courseButton.setTextColor(R.color.colorWhite);
                     courseButton.setOnClickListener(view -> {
                         linearLayout.removeAllViews();
                         cartDomainService.dropCourse(MainMenuActivity.USERNAME, classTextView.getText().toString());

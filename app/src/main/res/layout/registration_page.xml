@@ -86,9 +86,11 @@
 
     <Button
         android:id="@+id/createAccount"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Create Account"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_shape"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"/>
 
@@ -115,6 +117,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_shape"
         android:text="Login" />
 
 

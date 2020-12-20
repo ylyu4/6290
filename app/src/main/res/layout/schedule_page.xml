@@ -372,9 +372,11 @@
 
             <Button
                 android:id="@+id/startOver"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/button_shape"
                 android:text="Start Over"
+                android:textColor="@color/colorWhite"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"/>
 
