@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SignInActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private static final String USERNAME_KEY = "usernameKey";
 
@@ -36,7 +36,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_in_page);
+        setContentView(R.layout.login_page);
         ButterKnife.bind(this);
     }
 
@@ -46,7 +46,7 @@ public class SignInActivity extends AppCompatActivity {
         boolean successful = userDomainService.login(loginUsername.getText().toString(),
                 loginPassword.getText().toString());
         if (successful) {
-            Intent intent = new Intent(SignInActivity.this, MainMenuActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MainMenuActivity.class);
             Bundle parameter = new Bundle();
             parameter.putString(USERNAME_KEY, loginUsername.getText().toString());
             intent.putExtras(parameter);
@@ -65,7 +65,7 @@ public class SignInActivity extends AppCompatActivity {
 
     @OnClick(R.id.register)
     public void goToRegisterPage() {
-        startActivity(new Intent(SignInActivity.this, RegisterActivity.class));
+        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
     }
 
 }

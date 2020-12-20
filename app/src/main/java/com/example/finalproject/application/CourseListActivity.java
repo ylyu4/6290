@@ -218,7 +218,7 @@ public class CourseListActivity extends AppCompatActivity {
 
 
         logoutItem.setOnMenuItemClickListener(menuItem -> {
-            startActivity(new Intent(CourseListActivity.this, SignInActivity.class));
+            startActivity(new Intent(CourseListActivity.this, LoginActivity.class));
             return true;
         });
 

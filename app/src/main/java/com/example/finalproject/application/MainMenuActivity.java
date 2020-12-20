@@ -81,7 +81,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
 
         logoutItem.setOnMenuItemClickListener(menuItem -> {
-            startActivity(new Intent(MainMenuActivity.this, SignInActivity.class));
+            startActivity(new Intent(MainMenuActivity.this, LoginActivity.class));
             return true;
         });
 

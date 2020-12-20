@@ -128,10 +128,8 @@ public class CourseResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         setContentView(R.layout.course_result_page);
         ButterKnife.bind(this);
         Bundle parameter = getIntent().getExtras();
@@ -279,7 +277,7 @@ public class CourseResultActivity extends AppCompatActivity {
 
 
         logoutItem.setOnMenuItemClickListener(menuItem -> {
-            startActivity(new Intent(CourseResultActivity.this, SignInActivity.class));
+            startActivity(new Intent(CourseResultActivity.this, LoginActivity.class));
             return true;
         });
 

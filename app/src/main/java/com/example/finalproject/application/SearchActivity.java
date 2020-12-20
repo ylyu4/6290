@@ -48,16 +48,10 @@ public class SearchActivity extends AppCompatActivity {
     @BindView(R.id.range2)
     EditText endRange;
 
-    @BindView(R.id.searchCourses)
-    Button searchCourses;
-
-    @BindView(R.id.clearRange)
-    Button clearRange;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.search_page);
+        setContentView(R.layout.course_search_page);
         ButterKnife.bind(this);
     }
 
@@ -71,19 +65,58 @@ public class SearchActivity extends AppCompatActivity {
             Toast.makeText(this, "Please select a subject",Toast.LENGTH_SHORT).show();
             return;
         }
+
         if (spinnerCourse.getSelectedItem().toString().length() == 0) {
-            Toast.makeText(this, "Please select a course",Toast.LENGTH_SHORT).show();
+            String startText = startRange.getText().toString();
+            String endText = endRange.getText().toString();
+            if (startText.isEmpty() || endText.isEmpty()) {
+                Toast.makeText(this, "Please fill the course number in the box", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (startText.length() != 4 || endText.length() != 4) {
+                Toast.makeText(this, "The length of course number should be 4 digits", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (startText.charAt(0) == '0' || endText.charAt(0) == '0') {
+                Toast.makeText(this, "The course number can not start with 0", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            int start = Integer.parseInt(startText);
+            int end = Integer.parseInt(endText);
+
+            if (start > end) {
+                Toast.makeText(this, "Input range is invalid", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Intent intent = new Intent(SearchActivity.this, CourseListActivity.class);
+            Bundle parameter = new Bundle();
+            parameter.putString("startRange", startText);
+            parameter.putString("endRange", endText);
+            intent.putExtras(parameter);
+            startActivity(intent);
+            finish();
             return;
         }
 
-        Intent intent = new Intent(SearchActivity.this, CourseResultActivity.class);
-        Bundle parameter = new Bundle();
-        parameter.putString("courseNumber", spinnerCourse.getSelectedItem().toString());
-        parameter.putString("term", term.getSelectedItem().toString());
-        parameter.putString("subject", subject.getSelectedItem().toString());
-        intent.putExtras(parameter);
-        startActivity(intent);
-        finish();
+        if (startRange.getText().toString().length() != 0 || endRange.getText().toString().length() != 0) {
+            Toast.makeText(this, "If you want to search a specific course, course range should be empty", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            Intent intent = new Intent(SearchActivity.this, CourseResultActivity.class);
+            Bundle parameter = new Bundle();
+            parameter.putString("courseNumber", spinnerCourse.getSelectedItem().toString());
+            parameter.putString("term", term.getSelectedItem().toString());
+            parameter.putString("subject", subject.getSelectedItem().toString());
+            intent.putExtras(parameter);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
     }
 
     @OnClick(R.id.clearForm)
@@ -91,6 +124,8 @@ public class SearchActivity extends AppCompatActivity {
         term.setSelection(0);
         subject.setSelection(0);
         spinnerCourse.setSelection(0);
+        startRange.setText("");
+        endRange.setText("");
     }
 
 
@@ -113,55 +148,12 @@ public class SearchActivity extends AppCompatActivity {
 
 
         logoutItem.setOnMenuItemClickListener(menuItem -> {
-            startActivity(new Intent(SearchActivity.this, SignInActivity.class));
+            startActivity(new Intent(SearchActivity.this, LoginActivity.class));
             return true;
         });
 
         popup.show();
     }
-
-    @OnClick(R.id.searchCourses)
-    public void searchCoursesByRange() {
-        String startText = startRange.getText().toString();
-        String endText = endRange.getText().toString();
-        if (startText.isEmpty() || endText.isEmpty()) {
-            Toast.makeText(this, "Please fill the course number in the box", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (startText.length() != 4 || endText.length() != 4) {
-            Toast.makeText(this, "The length of course number should be 4 digits", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (startText.charAt(0) == '0' || endText.charAt(0) == '0') {
-            Toast.makeText(this, "The course number can not start with 0", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        int start = Integer.parseInt(startText);
-        int end = Integer.parseInt(endText);
-
-        if (start > end) {
-            Toast.makeText(this, "Input range is invalid", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Intent intent = new Intent(SearchActivity.this, CourseListActivity.class);
-        Bundle parameter = new Bundle();
-        parameter.putString("startRange", startText);
-        parameter.putString("endRange", endText);
-        intent.putExtras(parameter);
-        startActivity(intent);
-        finish();
-    }
-
-    @OnClick(R.id.clearRange)
-    public void clearRange() {
-        startRange.setText("");
-        endRange.setText("");
-    }
-
 
 
 }

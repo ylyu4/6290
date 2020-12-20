@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register_page);
+        setContentView(R.layout.registration_page);
         ButterKnife.bind(this);
     }
 
@@ -66,6 +66,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     @OnClick(R.id.signIn)
     public void goToSignInPage() {
-        startActivity(new Intent(RegisterActivity.this, SignInActivity.class));
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
     }
 }

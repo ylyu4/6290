@@ -171,16 +171,16 @@ public class CartActivity extends AppCompatActivity {
                 Toast.makeText(this, "Can't register because course time conflict",Toast.LENGTH_SHORT).show();
                 return;
             }
-            StringBuilder reminderMessgae = new StringBuilder();
+            StringBuilder reminderMessage = new StringBuilder();
             for (Course course : courseList) {
-                String prerequisities = course.getPrerequisites();
-                if (!prerequisities.equals("No")) {
-                    reminderMessgae.append(course.getCourseNumber()).append(" has ").append(prerequisities).append(" as prerequisites. \n");
+                String prerequisites = course.getPrerequisites();
+                if (!prerequisites.equals("No")) {
+                    reminderMessage.append(course.getCourseNumber()).append(" has ").append(prerequisites).append(" as prerequisites. \n");
                 }
             }
             userDomainService.updateUserRegisteredCourse(cart);
             cartDomainService.checkOutCourseInCart(MainMenuActivity.USERNAME);
-            Toast.makeText(this, reminderMessgae.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, reminderMessage.toString(), Toast.LENGTH_LONG).show();
             startActivity(new Intent(CartActivity.this, ScheduleActivity.class));
         }
     }
@@ -213,7 +213,7 @@ public class CartActivity extends AppCompatActivity {
 
 
         logoutItem.setOnMenuItemClickListener(menuItem -> {
-            startActivity(new Intent(CartActivity.this, SignInActivity.class));
+            startActivity(new Intent(CartActivity.this, LoginActivity.class));
             return true;
         });
 
