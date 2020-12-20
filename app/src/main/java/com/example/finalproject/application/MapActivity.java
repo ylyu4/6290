@@ -3,9 +3,7 @@ package com.example.finalproject.application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-
 import androidx.fragment.app.FragmentActivity;
-
 import com.example.finalproject.R;
 import com.example.finalproject.utils.LocationUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -14,10 +12,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.util.List;
 import java.util.Objects;
-
 import lombok.SneakyThrows;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {

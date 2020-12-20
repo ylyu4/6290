@@ -1,11 +1,8 @@
 package com.example.finalproject.utils;
 
 import android.os.Build;
-
 import androidx.annotation.RequiresApi;
-
 import com.example.finalproject.model.Course;
-
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

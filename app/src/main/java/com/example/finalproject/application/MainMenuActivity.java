@@ -9,9 +9,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.finalproject.R;
-
 import java.util.Objects;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -19,6 +17,8 @@ import butterknife.OnClick;
 public class MainMenuActivity extends AppCompatActivity {
 
     private static final String USERNAME_KEY = "usernameKey";
+
+    private static final String FLAG_KEY = "flag";
 
     public static String USERNAME = null;
 
@@ -60,7 +60,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
     @OnClick(R.id.myCart)
     public void goToMyCartPage() {
-        startActivity(new Intent(MainMenuActivity.this, CartActivity.class));
+        Intent intent = new Intent(MainMenuActivity.this, CartActivity.class);
+        Bundle parameter = new Bundle();
+        parameter.putString(FLAG_KEY, String.valueOf(2));
+        intent.putExtras(parameter);
+        startActivity(intent);
+        finish();
     }
 
     @OnClick(R.id.classSchedule)

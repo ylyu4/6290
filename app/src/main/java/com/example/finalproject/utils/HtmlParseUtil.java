@@ -2,7 +2,6 @@ package com.example.finalproject.utils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
 import java.net.URL;
 

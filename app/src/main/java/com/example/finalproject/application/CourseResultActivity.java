@@ -17,10 +17,8 @@ import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import com.example.finalproject.R;
 import com.example.finalproject.model.Course;
 import com.example.finalproject.model.Instructor;
@@ -53,11 +51,13 @@ public class CourseResultActivity extends AppCompatActivity {
 
     private static final String LAST_PAGE_KEY = "lastPage";
 
-    private static String courseNum;
+    private static final String FLAG_KEY = "flag";
 
-    private static String term;
+    public static String courseNum;
 
-    private static String subject;
+    public static String term;
+
+    public static String subject;
 
 
 
@@ -174,15 +174,15 @@ public class CourseResultActivity extends AppCompatActivity {
     @OnClick(R.id.addCourseToCart)
     public void addCourse() {
         if (cartDomainService.validateCourseIsInCart(MainMenuActivity.USERNAME, courseNumber.getText().toString())) {
-            Toast.makeText(this, "Can't add this course because it is already in your cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Can't add this course because it is already in your cart", Toast.LENGTH_LONG).show();
             return;
         }
         if (cartDomainService.validateMaxNumOfAllCoursesInCart(MainMenuActivity.USERNAME)) {
-            Toast.makeText(this, "You are only allowed to select 6 courses in your cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You are only allowed to select 6 courses in your cart", Toast.LENGTH_LONG).show();
             return;
         }
         cartDomainService.addCourseInCart(MainMenuActivity.USERNAME, courseNumber.getText().toString());
-        Toast.makeText(this, "The course is added to your cart",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "The course is added to your cart",Toast.LENGTH_LONG).show();
     }
 
 
@@ -191,7 +191,7 @@ public class CourseResultActivity extends AppCompatActivity {
     public void checkInstructorInfo(View v1) {
         Instructor instructor1 = instructorDomainService.getInstructor(instructor.getText().toString());
         LayoutInflater inflater=LayoutInflater.from( this );
-        @SuppressLint("InflateParams") View myView=inflater.inflate(R.layout.instructor_info_popup,null);
+        @SuppressLint("InflateParams") View myView=inflater.inflate(R.layout.instructor_popup_window_page,null);
         LinearLayout linearLayout = (LinearLayout) myView.findViewById(R.id.popup);
         TextView name = new TextView(this);
         TextView phoneNumber = new TextView(this);
@@ -265,7 +265,12 @@ public class CourseResultActivity extends AppCompatActivity {
 
     @OnClick(R.id.goToCartPage)
     public void goToCartPage() {
-        startActivity(new Intent(CourseResultActivity.this, CartActivity.class));
+        Intent intent = new Intent(CourseResultActivity.this, CartActivity.class);
+        Bundle parameter = new Bundle();
+        parameter.putString(FLAG_KEY, String.valueOf(0));
+        intent.putExtras(parameter);
+        startActivity(intent);
+        finish();
     }
 
     @OnClick(R.id.userInfo3)
@@ -277,8 +282,6 @@ public class CourseResultActivity extends AppCompatActivity {
         MenuItem usernameItem = menu.getItem(0);
         usernameItem.setTitle("Username: " + MainMenuActivity.USERNAME);
         MenuItem logoutItem = menu.getItem(1);
-
-
 
         logoutItem.setOnMenuItemClickListener(menuItem -> {
             startActivity(new Intent(CourseResultActivity.this, LoginActivity.class));

@@ -10,7 +10,6 @@ import com.example.finalproject.R;
 import com.example.finalproject.model.User;
 import com.example.finalproject.service.UserDomainService;
 import com.example.finalproject.utils.TextUtil;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -43,25 +42,25 @@ public class RegisterActivity extends AppCompatActivity {
         String username = registerUsername.getText().toString();
         String password = registerPassword.getText().toString();
         if (!TextUtil.validateUsernameLength(username)) {
-            Toast.makeText(this, "The length of username is invalid", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "The length of username is invalid", Toast.LENGTH_LONG).show();
             return;
         }
         if (!TextUtil.isAlphaNumeric(username)) {
             Toast.makeText(this, "The username should only contain digits and letters",
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_LONG).show();
             return;
         }
         if (userDomainService.validateUsernameExist(username)) {
-            Toast.makeText(this, "this username was registered", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "this username was registered", Toast.LENGTH_LONG).show();
             return;
         }
         if (!TextUtil.validatePasswordLength(password)) {
-            Toast.makeText(this, "The length of password is invalid",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "The length of password is invalid",Toast.LENGTH_LONG).show();
             return;
         }
 
         userDomainService.register(new User(username, password, null));
-        Toast.makeText(this, "Create account successfully",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Create account successfully",Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.signIn)

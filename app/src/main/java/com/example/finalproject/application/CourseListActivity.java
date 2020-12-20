@@ -21,14 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import com.example.finalproject.R;
 import com.example.finalproject.model.Course;
 import com.example.finalproject.model.Instructor;
 import com.example.finalproject.service.CartDomainService;
 import com.example.finalproject.service.CourseDomainService;
 import com.example.finalproject.service.InstructorDomainService;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,17 +37,17 @@ import butterknife.OnClick;
 
 public class CourseListActivity extends AppCompatActivity {
 
-    private static int start;
+    public static int start;
 
-    private static int end;
+    public static int end;
 
-    private static String term;
+    public static String term;
 
-    private static String subject;
+    public static String subject;
 
-    private static final String START_RANGE = "startRange";
+    private static final String START_RANGE_KEY = "startRange";
 
-    private static final String END_RANGE = "endRange";
+    private static final String END_RANGE_KEY = "endRange";
 
     private static final String LOCATION_KEY = "location";
 
@@ -58,6 +56,8 @@ public class CourseListActivity extends AppCompatActivity {
     private static final String TERM_KEY = "term";
 
     private static final String SUBJECT_KEY = "subject";
+
+    private static final String FLAG_KEY = "flag";
 
     private final CourseDomainService courseDomainService = new CourseDomainService(this);
 
@@ -98,8 +98,8 @@ public class CourseListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Bundle parameter = getIntent().getExtras();
         if (parameter != null) {
-            start = Integer.parseInt(Objects.requireNonNull(parameter.get(START_RANGE)).toString());
-            end = Integer.parseInt(Objects.requireNonNull(parameter.get(END_RANGE)).toString());
+            start = Integer.parseInt(Objects.requireNonNull(parameter.get(START_RANGE_KEY)).toString());
+            end = Integer.parseInt(Objects.requireNonNull(parameter.get(END_RANGE_KEY)).toString());
             term = Objects.requireNonNull(parameter.get(TERM_KEY)).toString();
             subject = Objects.requireNonNull(parameter.get(SUBJECT_KEY)).toString();
         }
@@ -236,7 +236,7 @@ public class CourseListActivity extends AppCompatActivity {
                 instructorImageButton.setOnClickListener(view -> {
                     Instructor instructorObject = instructorDomainService.getInstructor(course.getInstructor());
                     LayoutInflater inflater=LayoutInflater.from( this );
-                    @SuppressLint("InflateParams") View myView=inflater.inflate(R.layout.instructor_info_popup,null);
+                    @SuppressLint("InflateParams") View myView=inflater.inflate(R.layout.instructor_popup_window_page,null);
                     LinearLayout linearLayout = (LinearLayout) myView.findViewById(R.id.popup);
                     TextView name = new TextView(this);
                     TextView phoneNumber = new TextView(this);
@@ -441,7 +441,7 @@ public class CourseListActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } catch (Exception ex) {
-                        Toast.makeText(this, "This course is an online course", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "This course is an online course", Toast.LENGTH_LONG).show();
                         return;
                     }
 
@@ -463,15 +463,15 @@ public class CourseListActivity extends AppCompatActivity {
 
                 addCourseButton.setOnClickListener(view -> {
                     if (cartDomainService.validateCourseIsInCart(MainMenuActivity.USERNAME, courseNumber.getText().toString())) {
-                        Toast.makeText(this, "Can't add this course because it is already in your cart", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Can't add this course because it is already in your cart", Toast.LENGTH_LONG).show();
                         return;
                     }
                     if (cartDomainService.validateMaxNumOfAllCoursesInCart(MainMenuActivity.USERNAME)) {
-                        Toast.makeText(this, "You are only allowed to select 6 courses in your cart", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "You are only allowed to select 6 courses in your cart", Toast.LENGTH_LONG).show();
                         return;
                     }
                     cartDomainService.addCourseInCart(MainMenuActivity.USERNAME, courseNumber.getText().toString());
-                    Toast.makeText(this, "The course is added to your cart",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "The course is added to your cart",Toast.LENGTH_LONG).show();
                 });
                 courseListLayout.addView(addCourseButton);
 
@@ -499,7 +499,12 @@ public class CourseListActivity extends AppCompatActivity {
 
     @OnClick(R.id.goToCart)
     public void goToCartPage() {
-        startActivity(new Intent(CourseListActivity.this, CartActivity.class));
+        Intent intent = new Intent(CourseListActivity.this, CartActivity.class);
+        Bundle parameter = new Bundle();
+        parameter.putString(FLAG_KEY, String.valueOf(1));
+        intent.putExtras(parameter);
+        startActivity(intent);
+        finish();
     }
 
     @OnClick(R.id.userInfo5)
@@ -511,8 +516,6 @@ public class CourseListActivity extends AppCompatActivity {
         MenuItem usernameItem = menu.getItem(0);
         usernameItem.setTitle("Username: " + MainMenuActivity.USERNAME);
         MenuItem logoutItem = menu.getItem(1);
-
-
 
         logoutItem.setOnMenuItemClickListener(menuItem -> {
             startActivity(new Intent(CourseListActivity.this, LoginActivity.class));

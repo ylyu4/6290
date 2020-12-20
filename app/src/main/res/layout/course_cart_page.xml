@@ -44,7 +44,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/courseCartLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -60,63 +59,89 @@
                 android:textSize="35dp"
                 android:layout_marginVertical="30dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="60dp"
-                    android:layout_height="55dp"
-                    android:text="CRN"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:background="#ADD8E6"
-                    android:gravity="center" />
-                <TextView
-                    android:layout_width="60dp"
-                    android:layout_height="55dp"
-                    android:background="#ADD8E6"
-                    android:text="Class"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:gravity="center" />
-                <TextView
-                    android:layout_width="95dp"
-                    android:layout_height="55dp"
-                    android:background="#ADD8E6"
-                    android:text="Title"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:gravity="center" />
-                <TextView
-                    android:layout_width="65dp"
-                    android:layout_height="55dp"
-                    android:background="#ADD8E6"
-                    android:text="Section"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:gravity="center" />
-                <TextView
-                    android:layout_width="65dp"
-                    android:layout_height="55dp"
-                    android:background="#ADD8E6"
-                    android:text="Type"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:gravity="center" />
-                <TextView
-                    android:layout_width="65dp"
-                    android:layout_height="55dp"
-                    android:background="#ADD8E6"
-                    android:text="Action"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:gravity="center" />
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#000000" />
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/cartLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="55dp"
+                            android:text="CRN"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:background="#ADD8E6"
+                            android:gravity="center" />
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="55dp"
+                            android:background="#ADD8E6"
+                            android:text="Class"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+                        <TextView
+                            android:layout_width="95dp"
+                            android:layout_height="55dp"
+                            android:background="#ADD8E6"
+                            android:text="Title"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+                        <TextView
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:background="#ADD8E6"
+                            android:text="Day"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+                        <TextView
+                            android:layout_width="75dp"
+                            android:layout_height="55dp"
+                            android:background="#ADD8E6"
+                            android:text="Time"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+                        <TextView
+                            android:layout_width="65dp"
+                            android:layout_height="55dp"
+                            android:background="#ADD8E6"
+                            android:text="Section"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+                        <TextView
+                            android:layout_width="65dp"
+                            android:layout_height="55dp"
+                            android:background="#ADD8E6"
+                            android:text="Type"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+                        <TextView
+                            android:layout_width="85dp"
+                            android:layout_height="55dp"
+                            android:background="#ADD8E6"
+                            android:text="Action"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:gravity="center" />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#000000" />
+                </LinearLayout>
+            </HorizontalScrollView>
         </LinearLayout>
 
 
@@ -135,13 +160,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="#4682B4"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="150dp">
 
             <Button
                 android:id="@+id/backSearchPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_shape"
+                android:background="@drawable/border"
                 android:textColor="@color/colorWhite"
                 android:text="BACK"/>
 
@@ -149,7 +174,7 @@
                 android:id="@+id/backHomePage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_shape"
+                android:background="@drawable/border"
                 android:textColor="@color/colorWhite"
                 android:text="Home"
                 android:layout_marginLeft="75dp"/>
@@ -158,7 +183,7 @@
                 android:id="@+id/goToSchedulePage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_shape"
+                android:background="@drawable/border"
                 android:textColor="@color/colorWhite"
                 android:text="Next"
                 android:layout_marginLeft="75dp"/>

@@ -124,7 +124,7 @@
                 android:id="@+id/backSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_shape"
+                android:background="@drawable/border"
                 android:textColor="@color/colorWhite"
                 android:text="BACK"/>
 
@@ -132,7 +132,7 @@
                 android:id="@+id/backHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_shape"
+                android:background="@drawable/border"
                 android:textColor="@color/colorWhite"
                 android:text="Home"
                 android:layout_marginLeft="75dp"/>
@@ -141,7 +141,7 @@
                 android:id="@+id/goToCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_shape"
+                android:background="@drawable/border"
                 android:textColor="@color/colorWhite"
                 android:text="Next"
                 android:layout_marginLeft="75dp"/>

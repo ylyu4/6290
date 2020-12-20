@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.example.finalproject.model.Cart;
 import com.example.finalproject.model.User;
 import com.example.finalproject.utils.DButils;

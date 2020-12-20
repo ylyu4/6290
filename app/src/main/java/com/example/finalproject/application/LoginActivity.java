@@ -9,8 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.example.finalproject.R;
 import com.example.finalproject.service.UserDomainService;
-
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -54,10 +52,10 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         } else {
             if (userDomainService.validateUsernameExist(loginUsername.getText().toString())) {
-                Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Password is incorrect", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "Username does not exist",
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_LONG).show();
             }
         }
     }

@@ -3,7 +3,6 @@ package com.example.finalproject.utils;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import com.example.finalproject.model.Cart;
 import com.example.finalproject.model.Course;
 import com.example.finalproject.model.Instructor;

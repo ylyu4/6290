@@ -55,7 +55,7 @@ public class TextUtil {
 
         for (char c : cha) {
             if (sb.length() == 5) {
-                sb.append(",");
+                sb.append("/");
             }
 
             if (c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6'

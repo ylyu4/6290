@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.finalproject.R;
 import butterknife.BindView;
@@ -24,6 +23,10 @@ public class SearchActivity extends AppCompatActivity {
     private static final String TERM_KEY = "term";
 
     private static final String SUBJECT_KEY = "subject";
+
+    private static final String START_RANGE_KEY = "startRange";
+
+    private static final String END_RANGE_KEY = "endRange";
 
     @BindView(R.id.term)
     Spinner term;
@@ -62,11 +65,11 @@ public class SearchActivity extends AppCompatActivity {
     @OnClick(R.id.searchCourse)
     public void searchCourse() {
         if (term.getSelectedItem().toString().length() == 0) {
-            Toast.makeText(this, "Please select a term",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please select a term",Toast.LENGTH_LONG).show();
             return;
         }
         if (subject.getSelectedItem().toString().length() == 0) {
-            Toast.makeText(this, "Please select a subject",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please select a subject",Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -74,17 +77,17 @@ public class SearchActivity extends AppCompatActivity {
             String startText = startRange.getText().toString();
             String endText = endRange.getText().toString();
             if (startText.isEmpty() || endText.isEmpty()) {
-                Toast.makeText(this, "Please fill the course number in the box", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please fill the course number in the box", Toast.LENGTH_LONG).show();
                 return;
             }
 
             if (startText.length() != 4 || endText.length() != 4) {
-                Toast.makeText(this, "The length of course number should be 4 digits", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "The length of course number should be 4 digits", Toast.LENGTH_LONG).show();
                 return;
             }
 
             if (startText.charAt(0) == '0' || endText.charAt(0) == '0') {
-                Toast.makeText(this, "The course number can not start with 0", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "The course number can not start with 0", Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -92,14 +95,14 @@ public class SearchActivity extends AppCompatActivity {
             int end = Integer.parseInt(endText);
 
             if (start > end) {
-                Toast.makeText(this, "Input range is invalid", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Input range is invalid", Toast.LENGTH_LONG).show();
                 return;
             }
 
             Intent intent = new Intent(SearchActivity.this, CourseListActivity.class);
             Bundle parameter = new Bundle();
-            parameter.putString("startRange", startText);
-            parameter.putString("endRange", endText);
+            parameter.putString(START_RANGE_KEY, startText);
+            parameter.putString(END_RANGE_KEY, endText);
             parameter.putString(TERM_KEY, term.getSelectedItem().toString());
             parameter.putString(SUBJECT_KEY, subject.getSelectedItem().toString());
             intent.putExtras(parameter);
@@ -109,7 +112,7 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         if (startRange.getText().toString().length() != 0 || endRange.getText().toString().length() != 0) {
-            Toast.makeText(this, "If you want to search a specific course, course range should be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "If you want to search a specific course, course range should be empty", Toast.LENGTH_LONG).show();
             return;
         } else {
             Intent intent = new Intent(SearchActivity.this, CourseResultActivity.class);

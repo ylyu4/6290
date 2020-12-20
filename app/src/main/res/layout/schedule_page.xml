@@ -16,7 +16,7 @@
             android:layout_marginLeft="20dp"
             android:textSize="20dp"
             android:text="Spring 2021"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorBlue"/>
 
         <View
             android:layout_width="1dp"
@@ -52,7 +52,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="Sun"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorBlue"
             android:textSize="20dp" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="Mon"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorBlue"
             android:textSize="20dp" />
 
         <TextView
@@ -70,7 +70,7 @@
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="Tue"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorBlue"
             android:textSize="20dp" />
 
         <TextView
@@ -79,7 +79,7 @@
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="Wed"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorBlue"
             android:textSize="20dp" />
 
         <TextView
@@ -88,7 +88,7 @@
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="Thur"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorBlue"
             android:textSize="20dp" />
 
         <TextView
@@ -97,7 +97,7 @@
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="Fri"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorBlue"
             android:textSize="20dp" />
 
         <TextView
@@ -106,7 +106,7 @@
             android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="Sat"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorBlue"
             android:textSize="20dp" />
     </LinearLayout>
     <ScrollView
@@ -124,15 +124,15 @@
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:gravity="center"
-                    android:background="@android:color/holo_purple">
+                    android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="9:00"
                         android:textSize="12dp"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
 
                     <View
@@ -140,11 +140,12 @@
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="10:00"
                         android:textSize="12dp"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
 
                     <View
@@ -152,11 +153,12 @@
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="11:00"
                         android:textSize="12dp"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
 
                     <View
@@ -164,11 +166,12 @@
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="12:00"
                         android:textSize="12dp"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
 
                     <View
@@ -176,55 +179,60 @@
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:text="13:00"
                         android:textSize="12dp"
                         android:gravity="center"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:textSize="12dp"
                         android:text="14:00"
                         android:gravity="center"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:textSize="12dp"
                         android:text="15:00"
                         android:gravity="center"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:textSize="12dp"
                         android:text="16:00"
                         android:gravity="center"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:textSize="12dp"
                         android:text="17:00"
                         android:gravity="center"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
                     <View
                         android:layout_width="match_parent"
@@ -232,21 +240,23 @@
                         android:background="@color/colorPrimaryDark"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="18:00"
                         android:textSize="12dp"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="19:00"
+                        android:background="@color/colorBlue"
                         android:textSize="12dp"
                         android:textColor="@android:color/white"/>
                     <View
@@ -254,33 +264,36 @@
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="20:00"
                         android:textSize="12dp"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="21:00"
                         android:textSize="12dp"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="@color/colorPrimaryDark"/>
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="22:00"
                         android:textSize="12dp"
+                        android:background="@color/colorBlue"
                         android:textColor="@android:color/white"/>
 
                 </LinearLayout>

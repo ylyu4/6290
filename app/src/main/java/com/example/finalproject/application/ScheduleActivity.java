@@ -8,22 +8,18 @@ import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.finalproject.R;
 import com.example.finalproject.model.Course;
 import com.example.finalproject.service.CourseDomainService;
 import com.example.finalproject.service.UserDomainService;
 import com.example.finalproject.utils.SortUtil;
 import com.example.finalproject.utils.TimeUtil;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -143,7 +139,6 @@ public class ScheduleActivity extends AppCompatActivity {
                         totalMargin += SortUtil.convertParam(tv).topMargin;
                         totalMargin += SortUtil.convertParam(tv).height;
                     }
-
                 }
             }
         }

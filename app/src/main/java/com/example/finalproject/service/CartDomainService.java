@@ -2,8 +2,6 @@ package com.example.finalproject.service;
 
 import android.content.Context;
 import android.util.Log;
-
-
 import com.example.finalproject.model.Cart;
 import com.example.finalproject.repository.CartRepository;
 import com.example.finalproject.utils.TextUtil;

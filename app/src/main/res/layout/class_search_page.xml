@@ -203,7 +203,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="170dp"
-            android:background="@color/colorBlue"
+            android:background="@drawable/border"
             android:textColor="@color/colorWhite"
             android:text="Home"/>
         </LinearLayout>

@@ -14,9 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import com.example.finalproject.R;
 import com.example.finalproject.model.Cart;
 import com.example.finalproject.model.Course;
@@ -27,6 +27,7 @@ import com.example.finalproject.utils.TextUtil;
 import com.example.finalproject.utils.TimeUtil;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import butterknife.BindView;
@@ -42,9 +43,23 @@ public class CartActivity extends AppCompatActivity {
 
     private final UserDomainService userDomainService = new UserDomainService(this);
 
+    private static final String COURSE_NUMBER_KEY = "courseNumber";
 
-    @BindView(R.id.courseCartLayout)
-    LinearLayout courseCartLayout;
+    private static final String TERM_KEY = "term";
+
+    private static final String SUBJECT_KEY = "subject";
+
+    private static final String START_RANGE_KEY = "startRange";
+
+    private static final String END_RANGE_KEY = "endRange";
+
+    private static final String FLAG_KEY = "flag";
+
+    private int flag;
+
+
+    @BindView(R.id.cartLayout)
+    LinearLayout cartLayout;
 
     @BindView(R.id.registerCourses)
     Button registerCourses;
@@ -69,6 +84,10 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_cart_page);
         ButterKnife.bind(this);
+        Bundle parameter = getIntent().getExtras();
+        if (parameter != null) {
+            flag = Integer.parseInt(Objects.requireNonNull(parameter.get(FLAG_KEY)).toString());
+        }
         createCartUI();
     }
 
@@ -110,6 +129,22 @@ public class CartActivity extends AppCompatActivity {
                     titleTextView.setText(courseList.get(i).getTitle());
                     linearLayout.addView(titleTextView);
 
+                    TextView dayTextView = new TextView(this);
+                    dayTextView.setWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 55, getResources().getDisplayMetrics()));
+                    dayTextView.setHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
+                    dayTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+                    dayTextView.setGravity(Gravity.CENTER);
+                    dayTextView.setText(courseList.get(i).getDay());
+                    linearLayout.addView(dayTextView);
+
+                    TextView timeTextView = new TextView(this);
+                    timeTextView.setWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75, getResources().getDisplayMetrics()));
+                    timeTextView.setHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
+                    timeTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+                    timeTextView.setGravity(Gravity.CENTER);
+                    timeTextView.setText(String.format("%s-%s", courseList.get(i).getStartTime(), courseList.get(i).getEndTime()));
+                    linearLayout.addView(timeTextView);
+
                     TextView sectionTextView = new TextView(this);
                     sectionTextView.setWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, getResources().getDisplayMetrics()));
                     sectionTextView.setHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
@@ -129,14 +164,14 @@ public class CartActivity extends AppCompatActivity {
                     Button courseButton = new Button(this);
                     courseButton.setBackgroundResource(R.drawable.button_shape);
                     courseButton.setText("Drop");
-                    courseButton.setTextColor(R.color.colorWhite);
+                    courseButton.setTextColor(ContextCompat.getColor(this, R.color.colorWhite));
                     courseButton.setOnClickListener(view -> {
                         linearLayout.removeAllViews();
                         cartDomainService.dropCourse(MainMenuActivity.USERNAME, classTextView.getText().toString());
                     });
                     linearLayout.addView(courseButton);
 
-                    courseCartLayout.addView(linearLayout);
+                    cartLayout.addView(linearLayout);
                 }
             } else {
                 TextView emptyCartTextView = new TextView(this);
@@ -145,7 +180,7 @@ public class CartActivity extends AppCompatActivity {
                 emptyCartTextView.setLayoutParams(params);
                 emptyCartTextView.setGravity(Gravity.CENTER);
                 emptyCartTextView.setText("Your cart is empty");
-                courseCartLayout.addView(emptyCartTextView);
+                cartLayout.addView(emptyCartTextView);
             }
 
         } else {
@@ -155,7 +190,7 @@ public class CartActivity extends AppCompatActivity {
             emptyCartTextView.setLayoutParams(params);
             emptyCartTextView.setGravity(Gravity.CENTER);
             emptyCartTextView.setText("Your cart is empty");
-            courseCartLayout.addView(emptyCartTextView);
+            cartLayout.addView(emptyCartTextView);
         }
 
     }
@@ -165,12 +200,12 @@ public class CartActivity extends AppCompatActivity {
     public void registerCourses() {
         Cart cart = cartDomainService.getCart(MainMenuActivity.USERNAME);
         if (cart == null || cart.getCourseInCart() == null || cart.getCourseInCart().size() == 0) {
-            Toast.makeText(this, "Can't register because course cart is empty",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Can't register because course cart is empty",Toast.LENGTH_LONG).show();
         } else {
             List<Course> courseList = cartDomainService.getCouseList(MainMenuActivity.USERNAME).stream()
                     .map(courseDomainService::getCourse).collect(Collectors.toList());
             if (TimeUtil.validateTimeConflicts(courseList)) {
-                Toast.makeText(this, "Can't register because course time conflict",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Can't register because course time conflict",Toast.LENGTH_LONG).show();
                 return;
             }
             StringBuilder reminderMessage = new StringBuilder();
@@ -189,7 +224,29 @@ public class CartActivity extends AppCompatActivity {
 
     @OnClick(R.id.backSearchPage)
     public void backResultPage() {
-        startActivity(new Intent(CartActivity.this, SearchActivity.class));
+        if (flag == 0) {
+            Intent intent = new Intent(CartActivity.this, CourseResultActivity.class);
+            Bundle parameter = new Bundle();
+            parameter.putString(COURSE_NUMBER_KEY, CourseResultActivity.courseNum);
+            parameter.putString(TERM_KEY, CourseResultActivity.term);
+            parameter.putString(SUBJECT_KEY, CourseResultActivity.subject);
+            intent.putExtras(parameter);
+            startActivity(intent);
+            finish();
+        } else if (flag == 1) {
+            Intent intent = new Intent(CartActivity.this, CourseListActivity.class);
+            Bundle parameter = new Bundle();
+            parameter.putString(START_RANGE_KEY, String.valueOf(CourseListActivity.start));
+            parameter.putString(END_RANGE_KEY, String.valueOf(CourseListActivity.end));
+            parameter.putString(TERM_KEY, CourseListActivity.term);
+            parameter.putString(SUBJECT_KEY, CourseListActivity.subject);
+            intent.putExtras(parameter);
+            startActivity(intent);
+            finish();
+        } else {
+            startActivity(new Intent(CartActivity.this, SearchActivity.class));
+        }
+
     }
 
     @OnClick(R.id.backHomePage)
@@ -211,8 +268,6 @@ public class CartActivity extends AppCompatActivity {
         MenuItem usernameItem = menu.getItem(0);
         usernameItem.setTitle("Username: " + MainMenuActivity.USERNAME);
         MenuItem logoutItem = menu.getItem(1);
-
-
 
         logoutItem.setOnMenuItemClickListener(menuItem -> {
             startActivity(new Intent(CartActivity.this, LoginActivity.class));
