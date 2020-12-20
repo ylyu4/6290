@@ -91,6 +91,8 @@ public class CartActivity extends AppCompatActivity {
         createCartUI();
     }
 
+
+    // Create cart user interface
     @SuppressLint({"ResourceType", "SetTextI18n"})
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void createCartUI() {
@@ -195,6 +197,7 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
+    // register courses and generate the schedule
     @RequiresApi(api = Build.VERSION_CODES.O)
     @OnClick(R.id.registerCourses)
     public void registerCourses() {
@@ -222,6 +225,7 @@ public class CartActivity extends AppCompatActivity {
         }
     }
 
+    // go back to the last activity you were at
     @OnClick(R.id.backSearchPage)
     public void backResultPage() {
         if (flag == 0) {
@@ -249,16 +253,20 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
+    // go back to main menu
     @OnClick(R.id.backHomePage)
     public void backHomePage() {
         startActivity(new Intent(CartActivity.this, MainMenuActivity.class));
     }
 
+    // go to the schedule page
     @OnClick(R.id.goToSchedulePage)
     public void goToSchedulePage() {
         startActivity(new Intent(CartActivity.this, ScheduleActivity.class));
     }
 
+
+    // check current user's information
     @OnClick(R.id.userInfo4)
     public void checkUserInfo() {
         PopupMenu popup = new PopupMenu(CartActivity.this, userInfo);

@@ -20,6 +20,7 @@ public class UserRepository {
         dButils = new DButils(context);
     }
 
+    // save a new account in the database
     public int saveAccount(User user) {
         SQLiteDatabase db = dButils.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -31,6 +32,8 @@ public class UserRepository {
         return (int)res;
     }
 
+
+    // find account by the username and password
     public boolean findAccount(String username, String password) {
         SQLiteDatabase db = dButils.getReadableDatabase();
         String selectQuery = "SELECT *"+
@@ -42,6 +45,8 @@ public class UserRepository {
         return cursor.moveToFirst();
     }
 
+
+    // check whether the username exists or not
     public boolean findUsername(String username) {
         SQLiteDatabase db = dButils.getReadableDatabase();
         String selectQuery = "SELECT *"+
@@ -52,6 +57,8 @@ public class UserRepository {
         return cursor.moveToFirst();
     }
 
+
+    // update the latest registered courses in the database
     public void updateUserRegisteredCourse(String username, String courses) {
         SQLiteDatabase db = dButils.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -60,12 +67,8 @@ public class UserRepository {
         db.close();
     }
 
-    public void cleanData() {
-        SQLiteDatabase db = dButils.getWritableDatabase();
-        String deleteQuery = "Delete from " + User.TABLE;
-        db.execSQL(deleteQuery);
-    }
 
+    // get the latest registered courses bt the username
     public List<String> getRegisteredCourseByUsername(String username) {
         SQLiteDatabase db = dButils.getWritableDatabase();
         String selectQuery = "SELECT *"+

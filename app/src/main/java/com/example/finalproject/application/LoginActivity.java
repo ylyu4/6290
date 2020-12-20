@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    // login in with username and password
     @OnClick(R.id.login)
     public void login() {
         boolean successful = userDomainService.login(loginUsername.getText().toString(),
@@ -60,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-
+    // go the the registration page
     @OnClick(R.id.register)
     public void goToRegisterPage() {
         startActivity(new Intent(LoginActivity.this, RegisterActivity.class));

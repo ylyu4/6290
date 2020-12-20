@@ -17,7 +17,8 @@ public class InstructorRepository {
     }
 
 
-    public Instructor getInstrucorByName(String name) {
+    // get instructor information by instructor name
+    public Instructor getInstructorByName(String name) {
         SQLiteDatabase db = dButils.getReadableDatabase();
         String selectQuery = "SELECT *"+
                 " FROM " + Instructor.TABLE

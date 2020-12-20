@@ -47,7 +47,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
 
-
+    // go to the class search page
     @OnClick(R.id.classSearch)
     public void goToClassSearchPage() {
         Intent intent = new Intent(MainMenuActivity.this, SearchActivity.class);
@@ -58,6 +58,8 @@ public class MainMenuActivity extends AppCompatActivity {
         finish();
     }
 
+
+    // go to the course cart page
     @OnClick(R.id.myCart)
     public void goToMyCartPage() {
         Intent intent = new Intent(MainMenuActivity.this, CartActivity.class);
@@ -68,11 +70,15 @@ public class MainMenuActivity extends AppCompatActivity {
         finish();
     }
 
+
+    // go to the course schedule page
     @OnClick(R.id.classSchedule)
     public void goToSchedulePage() {
         startActivity(new Intent(MainMenuActivity.this, ScheduleActivity.class));
     }
 
+
+    // check the current user's information
     @OnClick(R.id.userInfo1)
     public void checkUserInfo() {
         PopupMenu popup = new PopupMenu(MainMenuActivity.this, userInfo);
@@ -82,8 +88,6 @@ public class MainMenuActivity extends AppCompatActivity {
         MenuItem usernameItem = menu.getItem(0);
         usernameItem.setTitle("Username: " + USERNAME);
         MenuItem logoutItem = menu.getItem(1);
-
-
 
         logoutItem.setOnMenuItemClickListener(menuItem -> {
             startActivity(new Intent(MainMenuActivity.this, LoginActivity.class));

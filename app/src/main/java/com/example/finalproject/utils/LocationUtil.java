@@ -15,7 +15,7 @@ public class LocationUtil {
 
 
 
-
+    // convert location to coordinates
     public static List<Double> getLangitudeAndLatitude(String location) {
         String[] arr = location.split(" ");
 

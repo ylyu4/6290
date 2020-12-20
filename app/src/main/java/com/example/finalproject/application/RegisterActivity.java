@@ -37,17 +37,14 @@ public class RegisterActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+
+    // create an account with a username and password
     @OnClick(R.id.createAccount)
     public void createAccount() {
         String username = registerUsername.getText().toString();
         String password = registerPassword.getText().toString();
         if (!TextUtil.validateUsernameLength(username)) {
             Toast.makeText(this, "The length of username is invalid", Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (!TextUtil.isAlphaNumeric(username)) {
-            Toast.makeText(this, "The username should only contain digits and letters",
-                    Toast.LENGTH_LONG).show();
             return;
         }
         if (userDomainService.validateUsernameExist(username)) {
@@ -63,6 +60,8 @@ public class RegisterActivity extends AppCompatActivity {
         Toast.makeText(this, "Create account successfully",Toast.LENGTH_LONG).show();
     }
 
+
+    // go to the login page
     @OnClick(R.id.signIn)
     public void goToSignInPage() {
         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));

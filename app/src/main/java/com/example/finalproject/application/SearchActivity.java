@@ -62,6 +62,7 @@ public class SearchActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    // search single course or multiple courses
     @OnClick(R.id.searchCourse)
     public void searchCourse() {
         if (term.getSelectedItem().toString().length() == 0) {
@@ -128,6 +129,8 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
+
+    // clear all views to default in the page
     @OnClick(R.id.clearForm)
     public void clearForm() {
         term.setSelection(0);
@@ -138,12 +141,15 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
+    // go back to the main menu page
     @OnClick(R.id.home)
     public void goBackToHomePage() {
         startActivity(new Intent(SearchActivity.this, MainMenuActivity.class));
     }
 
 
+
+    // check the current user's information
     @OnClick(R.id.userInfo2)
     public void checkUserInfo() {
         PopupMenu popup = new PopupMenu(SearchActivity.this, userInfo);

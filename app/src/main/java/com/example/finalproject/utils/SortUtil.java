@@ -9,6 +9,7 @@ import java.util.List;
 public class SortUtil {
 
 
+    // sort course textview in the schedule activity
     public static List<TextView> sortTextViewMargin(List<TextView> textViews) {
 
         for (int i = 0; i < textViews.size() - 1; i++) {
@@ -23,6 +24,7 @@ public class SortUtil {
         return textViews;
     }
 
+    //  get layout param from a textview
     public static LinearLayout.LayoutParams convertParam(TextView textView) {
         return (LinearLayout.LayoutParams) textView.getLayoutParams();
     }

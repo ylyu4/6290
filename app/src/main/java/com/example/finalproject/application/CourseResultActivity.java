@@ -143,6 +143,7 @@ public class CourseResultActivity extends AppCompatActivity {
         getResult(courseNum);
     }
 
+    // fill course information
     @SneakyThrows
     public void getResult(String courseNum) {
         termTitle.setText(term);
@@ -171,6 +172,7 @@ public class CourseResultActivity extends AppCompatActivity {
         }
     }
 
+    // add course to course cart
     @OnClick(R.id.addCourseToCart)
     public void addCourse() {
         if (cartDomainService.validateCourseIsInCart(MainMenuActivity.USERNAME, courseNumber.getText().toString())) {
@@ -186,6 +188,7 @@ public class CourseResultActivity extends AppCompatActivity {
     }
 
 
+    // check current user's information
     @SuppressLint({"SetTextI18n", "ResourceAsColor"})
     @OnClick(R.id.instructorInfo)
     public void checkInstructorInfo(View v1) {
@@ -240,7 +243,7 @@ public class CourseResultActivity extends AppCompatActivity {
     }
 
 
-
+    // go to the map page
     @OnClick(R.id.map)
     public void showMap() {
         Intent intent = new Intent(CourseResultActivity.this, MapActivity.class);
@@ -253,16 +256,20 @@ public class CourseResultActivity extends AppCompatActivity {
     }
 
 
+    // go back to the search page
     @OnClick(R.id.backToSearchPage)
     public void backToSearchPage() {
         startActivity(new Intent(CourseResultActivity.this, SearchActivity.class));
     }
 
+    // go back to the main menu page
     @OnClick(R.id.backToHomePage)
     public void setBackToHomePage() {
         startActivity(new Intent(CourseResultActivity.this, MainMenuActivity.class));
     }
 
+
+    // go to the course cart page
     @OnClick(R.id.goToCartPage)
     public void goToCartPage() {
         Intent intent = new Intent(CourseResultActivity.this, CartActivity.class);
@@ -273,6 +280,7 @@ public class CourseResultActivity extends AppCompatActivity {
         finish();
     }
 
+    // check the current user's information
     @OnClick(R.id.userInfo3)
     public void checkUserInfo() {
         PopupMenu popup = new PopupMenu(CourseResultActivity.this, userInfo);

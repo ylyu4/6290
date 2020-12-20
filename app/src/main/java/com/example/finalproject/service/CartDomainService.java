@@ -15,16 +15,19 @@ public class CartDomainService {
         cartRepository = new CartRepository(context);
     }
 
+
+    // add a course to the cart
     public void addCourseInCart(String username, String course) {
         if (cartRepository.checkUserHasCartRecord(username)) {
             Cart cart = cartRepository.getCourseInCart(username);
             cart.getCourseInCart().add(course);
             cartRepository.updateCourseInCart(cart.getUsername(), TextUtil.listToString(cart.getCourseInCart()));
         } else {
-            cartRepository.addCourseToCartFistTime(username, course);
+            cartRepository.addCourseToCartFirstTime(username, course);
         }
     }
 
+    // drop a course from the cart
     public void dropCourse(String username, String course) {
         Cart cart = cartRepository.getCourseInCart(username);
         cart.getCourseInCart().remove(course);
@@ -37,6 +40,7 @@ public class CartDomainService {
 
     }
 
+    // get how many courses in cart
     public List<String> getCouseList(String username) {
         Cart cart = getCart(username);
         if (cart != null) {
@@ -47,14 +51,19 @@ public class CartDomainService {
 
     }
 
+    // get cart by username
     public Cart getCart(String username) {
         return cartRepository.getCourseInCart(username);
     }
 
+
+    // check whether the user exists in the cart table or not
     public boolean validateUserExistInCart(String username) {
         return cartRepository.getCourseInCart(username) != null;
     }
 
+
+    // validate a course exist in cart or not by the username
     public boolean validateCourseIsInCart(String username, String course) {
         List<String> courseList = getCouseList(username);
         if (courseList == null || courseList.size() == 0) {
@@ -68,6 +77,8 @@ public class CartDomainService {
         return false;
     }
 
+
+    // validate the number of courses in the cart
     public boolean validateMaxNumOfAllCoursesInCart(String username) {
         List<String> courseList = getCouseList(username);
         if (courseList == null) {
@@ -79,6 +90,7 @@ public class CartDomainService {
         return false;
     }
 
+    // register all courses and clear this data in the cart table
     public void checkOutCourseInCart(String username) {
         cartRepository.clearCart(username);
     }

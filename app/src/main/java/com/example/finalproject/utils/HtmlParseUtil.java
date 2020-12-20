@@ -12,12 +12,15 @@ public class HtmlParseUtil {
     private static final String URL_PREFIX = "https://www.ratemyprofessors.com/ShowRatings.jsp?tid=";
 
 
+    // use jsoup get professor quality rating
     public static String getProfessorPoint(String id) throws IOException {
         String url = URL_PREFIX + id;
         return Jsoup.parse(new URL(url), 30000).getElementsByClass("RatingValue__Numerator-qw8sqy-2").eq(0).text();
 
     }
 
+
+    // user jsoup get professor difficulty
     public static String getProfessorDifficulty(String id) throws IOException {
         String url = URL_PREFIX + id;
         Elements element = Jsoup.parse(new URL(url), 30000).getElementsByClass("FeedbackItem__FeedbackNumber-uof32n-1");

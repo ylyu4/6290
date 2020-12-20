@@ -108,6 +108,7 @@ public class CourseListActivity extends AppCompatActivity {
 
 
 
+    // create course list user interface
     @SuppressLint("ResourceAsColor")
     public void showCourseList() {
         termTitle.setText(term);
@@ -487,16 +488,19 @@ public class CourseListActivity extends AppCompatActivity {
         }
     }
 
+    // go back to the search page
     @OnClick(R.id.backSearch)
     public void backToSearchPage() {
         startActivity(new Intent(CourseListActivity.this, SearchActivity.class));
     }
 
+    // go back to the main menu page
     @OnClick(R.id.backHome)
     public void setBackToHomePage() {
         startActivity(new Intent(CourseListActivity.this, MainMenuActivity.class));
     }
 
+    // go to the course cart page
     @OnClick(R.id.goToCart)
     public void goToCartPage() {
         Intent intent = new Intent(CourseListActivity.this, CartActivity.class);
@@ -507,6 +511,7 @@ public class CourseListActivity extends AppCompatActivity {
         finish();
     }
 
+    // check current user's information
     @OnClick(R.id.userInfo5)
     public void checkUserInfo() {
         PopupMenu popup = new PopupMenu(CourseListActivity.this, userInfo);

@@ -4,8 +4,6 @@ package com.example.finalproject.utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TextUtil {
 
@@ -15,20 +13,18 @@ public class TextUtil {
 
     private static Integer MAXIMUM_PASSWORD_LENGTH = 10;
 
+
+    // validate username length
     public static boolean validateUsernameLength(String username) {
         return username.length() == USERNAME_LENGTH;
     }
 
-    public static boolean isAlphaNumeric(String username){
-        Pattern p = Pattern.compile("[0-9a-zA-Z]{1,}");
-        Matcher m = p.matcher(username);
-        return m.matches();
-    }
-
+    // validate password length
     public static boolean validatePasswordLength(String password) {
         return password.length() >= MINIMUN_PASSWORD_LENGTH && password.length() <= MAXIMUM_PASSWORD_LENGTH;
     }
 
+    // convert list string to string
     public static String listToString(List<String> list) {
         if (list == null) {
             return null;
@@ -44,11 +40,13 @@ public class TextUtil {
         return converted.toString();
     }
 
+    // split string to a list of string
     public static List<String> stringToList(String str) {
         String[] arr = str.split(",");
         return new ArrayList<>(Arrays.asList(arr));
     }
 
+    // parse crn string
     public static String parseOnlineCrn(String str) {
         StringBuilder sb  = new StringBuilder();
         char[] cha = str.toCharArray();

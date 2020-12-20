@@ -17,7 +17,9 @@ public class CartRepository {
         dButils = new DButils(context);
     }
 
-    public int addCourseToCartFistTime(String username, String course) {
+
+    // create a new cart data by a username and a course
+    public int addCourseToCartFirstTime(String username, String course) {
         SQLiteDatabase db = dButils.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(Cart.KEY_username, username);
@@ -27,6 +29,8 @@ public class CartRepository {
         return (int)res;
     }
 
+
+    // check data record in the cart table by the username
     public boolean checkUserHasCartRecord(String username) {
         SQLiteDatabase db = dButils.getReadableDatabase();
         String selectQuery = "select * from " + Cart.TABLE +
@@ -35,6 +39,8 @@ public class CartRepository {
         return cursor.moveToFirst();
     }
 
+
+    // update the course data in the cart
     public void updateCourseInCart(String username, String course) {
         SQLiteDatabase db = dButils.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -43,6 +49,7 @@ public class CartRepository {
         db.close();
     }
 
+    // get cart data by a username
     public Cart getCourseInCart(String username) {
         SQLiteDatabase db = dButils.getWritableDatabase();
         String selectQuery = "select * from " + Cart.TABLE +
@@ -54,6 +61,7 @@ public class CartRepository {
         return null;
     }
 
+    // remove data in the cart by the username
     public void clearCart(String username) {
         SQLiteDatabase db = dButils.getWritableDatabase();
         db.execSQL("delete from " + Cart.TABLE + " where " + Cart.KEY_username + " =" + username);

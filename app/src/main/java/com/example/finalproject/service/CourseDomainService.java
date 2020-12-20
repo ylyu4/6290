@@ -13,6 +13,7 @@ public class CourseDomainService {
         courseRepository = new CourseRepository(context);
     }
 
+    // get the course by a course number
     public Course getCourse(String courseNumber) {
         return courseRepository.getCourseByCourseNumber(courseNumber);
     }

@@ -82,6 +82,7 @@ public class ScheduleActivity extends AppCompatActivity {
         createUI();
     }
 
+    // get which courses are registered in the previous activity
     @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Course> getRegisteredCourse() {
         List<String> courseNameList = userDomainService.getCourseListByUsername(MainMenuActivity.USERNAME);
@@ -92,6 +93,7 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
 
+    // create the course schedule user interface
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void createUI() {
         List<Course> courseList = getRegisteredCourse();
@@ -145,6 +147,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
     }
 
+    // create user interface (HELPER METHOD)
     private List<LinearLayout> addScheduleForCourse(Course course) {
         List<LinearLayout> res = new ArrayList<>();
         String[] days = course.getDay().split("/");
@@ -175,6 +178,8 @@ public class ScheduleActivity extends AppCompatActivity {
         return res;
     }
 
+
+    // go back to the main menu page
     @OnClick(R.id.startOver)
     public void startOver() {
         startActivity(new Intent(ScheduleActivity.this, MainMenuActivity.class));

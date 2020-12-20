@@ -18,10 +18,13 @@ public class TimeUtil {
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
 
+    // parse local time by string time
     public static LocalTime parseTime(String time) {
         return LocalTime.parse(time, formatter);
     }
 
+
+    // check the course time conflict or not
     public static boolean validateTimeConflicts(List<Course> courseList) {
         HashMap<String, List<List<LocalTime>>> map = new HashMap<>();
 

@@ -66,6 +66,8 @@ public class DButils extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+
+    // import courses information
     private String importCourseInfo() {
         return "Insert into " + Course.TABLE + " (" + Course.KEY_courseNumber + "," + Course.KEY_title + ","
                 + Course.KEY_creditHours + "," + Course.KEY_description + "," + Course.KEY_crn + "," + Course.KEY_section + ","
@@ -89,6 +91,8 @@ public class DButils extends SQLiteOpenHelper {
 
     }
 
+
+    // import instructor information
     private String importInstructorInfo() {
         return "Insert into " + Instructor.TABLE + " (" + Instructor.KEY_name + "," + Instructor.KEY_phoneNumber + "," + Instructor.KEY_email + "," + Instructor.KEY_office + "," + Instructor.KEY_rateMyProfessorId + ") values " +
                 "('Shivraj Kanungo', '202-994-3734', 'kanungo@gwu.edu', 'DUQUES 515E', '2643395'), " +

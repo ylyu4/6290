@@ -26,14 +26,19 @@ public class UserDomainService {
         return  userRepository.findAccount(username, password);
     }
 
+    // check username is registered or not
     public boolean validateUsernameExist(String username) {
         return userRepository.findUsername(username);
     }
 
+
+    // update the latest register courses for a user
     public void updateUserRegisteredCourse(Cart cart) {
         userRepository.updateUserRegisteredCourse(cart.getUsername(), TextUtil.listToString(cart.getCourseInCart()));
     }
 
+
+    // get registered courses list by a username
     public List<String> getCourseListByUsername(String username) {
         return userRepository.getRegisteredCourseByUsername(username);
     }

@@ -12,8 +12,9 @@ public class InstructorDomainService {
         instructorRepository = new InstructorRepository(context);
     }
 
+    // get an instructor by a instructor name
     public Instructor getInstructor(String name) {
-        return instructorRepository.getInstrucorByName(name);
+        return instructorRepository.getInstructorByName(name);
     }
 
 }
